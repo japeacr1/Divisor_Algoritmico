@@ -1,0 +1,17 @@
+C:/Users/japeacr1/Desktop/Divisor_questa/Divisor_Algoritmico.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/japeacr1/Desktop/Divisor_questa/Divisor_Algoritmico.sv
+QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
+-- Compiling module Divisor_Algoritmico
+
+Top level modules:
+	Divisor_Algoritmico
+
+} {} {}} C:/Users/japeacr1/Desktop/Divisor_questa/Top_divisor.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/japeacr1/Desktop/Divisor_questa/Top_divisor.sv
+QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
+-- Compiling interface DivInterface
+-- Compiling program estimulos
+-- Compiling module Top_divisor
+
+Top level modules:
+	Top_divisor
+
+} {} {}}
