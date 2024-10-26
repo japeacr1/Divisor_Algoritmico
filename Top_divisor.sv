@@ -1,21 +1,21 @@
 `timescale 1ns/1ps
 
-// M骴ulo superior
+// M贸dulo superior
 module Top_divisor();
     parameter tamanyo = 32;
     logic CLK;
     logic RSTa;
 
-    // Instanciaci髇 de la interfaz
+    // Instanciaci贸n de la interfaz
     Interface_if #(tamanyo) test_if(.reloj(CLK), .reset(RSTa));
 
-    // Instanciaci髇 del dise駉 (DUT)
+    // Instanciaci贸n del dise帽o (DUT)
     Divisor_Algoritmico Duv (.bus(test_if));
 
-    // Instanciaci髇 del programa de est韒ulos
+    // Instanciaci贸n del programa de est铆mulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));
 
-    // Generaci髇 del reloj (CLK)
+    // Generaci贸n del reloj (CLK)
     always begin
         CLK = 1'b0; #5;
         CLK = 1'b1; #5;
@@ -38,7 +38,7 @@ module Top_divisor();
     end
 endmodule
 
-// Definici髇 de la interfaz/////////////////////////////////////////////////////////////////////////////////////////
+// Definici贸n de la interfaz/////////////////////////////////////////////////////////////////////////////////////////
 interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit reset);
     logic Start;
     logic Done;
@@ -57,7 +57,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input #1ns Done;
     endclocking: md;
 
-    // Clocking block para generaci髇 de est韒ulos 
+    // Clocking block para generaci贸n de est铆mulos 
     clocking sd @(posedge reloj);
         input  #2ns Coc;
         input  #2ns Res;
@@ -81,7 +81,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
     );
 endinterface
 
-// Paquete de verificaci髇//////////////////////////////////////////////////////////////////////////////////////////
+// Paquete de verificaci贸n//////////////////////////////////////////////////////////////////////////////////////////
 package utilidades_verificacion;
     parameter tamanyo = 32;
 
@@ -92,7 +92,7 @@ package utilidades_verificacion;
     endclass
 
     class Scoreboard;
- 	logic [tamanyo-1:0] cola_target_coc [$]
+	logic [tamanyo-1:0] cola_target_coc [$];
 	logic [tamanyo-1:0] cola_target_res [$];
 	logic [tamanyo-1:0] pretarget_coc, pretarget_res;
         logic [tamanyo-1:0] target_coc, target_res;
@@ -145,19 +145,19 @@ package utilidades_verificacion;
         covergroup valores @(monitorizar_ports.md);
 	    // Coverpoint para Num
 	    cp1:coverpoint monitorizar_ports.md.Num { 
-//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};        // Captura todos los n鷐eros negativos
+//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};        // Captura todos los n煤meros negativos
 	        bins zero[] = {0};                 	     // Captura el cero
-	        bins entre_1_y_100[] = {[1:100]};      	     // Captura n鷐eros del 1 al 100
-//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};  // Captura n鷐eros mayores que 100
+	        bins entre_1_y_100[] = {[1:100]};      	     // Captura n煤meros del 1 al 100
+//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};  // Captura n煤meros mayores que 100
 //		ignore_bins ignorados[] = {[2**(tamanyo):$]};
 	    }
 	
 	    // Coverpoint para Den
 	    cp2:coverpoint monitorizar_ports.md.Den {
-//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};         // Captura todos los n鷐eros negativos
+//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};         // Captura todos los n煤meros negativos
 	        illegal_bins zero[] = {0};                            // Captura el cero
-	        bins entre_1_y_100[] = {[1:100]};                // Captura n鷐eros del 1 al 100
-//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};   // Captura n鷐eros mayores que 100
+	        bins entre_1_y_100[] = {[1:100]};                // Captura n煤meros del 1 al 100
+//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};   // Captura n煤meros mayores que 100
 //		ignore_bins ignorados[] = {[2**(tamanyo):$]};
 	    }
 	endgroup
@@ -173,7 +173,7 @@ package utilidades_verificacion;
 	    testar_ports = ports;
             monitorizar_ports = mports;
 
-	    //instanciaci髇 objetos
+	    //instanciaci贸n objetos
 	    busInst = new;               //construimos la clase de valores random
             sb = new(monitorizar_ports); //construimos el scoreboard      
    	    valores = new(); // Instancia del covergroup
@@ -189,7 +189,7 @@ package utilidades_verificacion;
         endtask
 
         task prueba_random;
-   	 int max_iteraciones = 100; // Define un l韒ite
+   	 int max_iteraciones = 100; // Define un l铆mite
    	 int iteraciones = 0;
             while (iteraciones < max_iteraciones) begin
                 assert (busInst.randomize()) else $fatal("Randomization failed");
@@ -215,7 +215,7 @@ package utilidades_verificacion;
 
 endpackage
 
-// Programa para la instanciaci髇 de m骴ulos//////////////////////////////////////////////////////////////////////////////
+// Programa para la instanciaci贸n de m贸dulos//////////////////////////////////////////////////////////////////////////////
 program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface_if.monitor monitorizar);
     utilidades_verificacion::environment casos = new(testar, monitorizar);
     
