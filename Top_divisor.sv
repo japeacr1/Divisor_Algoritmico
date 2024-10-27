@@ -106,23 +106,21 @@ package utilidades_verificacion;
         endfunction
 
 
-
-	task monitor_input;
-	    
-	    logic start_control = 0; // Variable para evitar duplicados
+	task monitor_input;    
+	    logic start_control = 1;      // Variable para evitar duplicados
 	    while (1) begin
 	        @(mports.md);
 	        if (mports.md.Start) 
-		  if (!start_control) begin // Solo guardar si start_control es 0
+		  if (start_control) begin // Solo guardar si start_control es 0
 	            pretarget_coc = mports.md.Num / mports.md.Den;
 	            pretarget_res = mports.md.Num % mports.md.Den;
 	            cola_target_coc.push_front(pretarget_coc);
 	            cola_target_res.push_front(pretarget_res);
-//	            $display("Guardamos esto en la cola - Cociente: %d, Residuo: %d", pretarget_coc, pretarget_res);
-		    start_control = 1; // Cambia el estado para evitar duplicados
+//	            $display("Guardamos esto en la cola -Cociente: %d, Residuo: %d", pretarget_coc, pretarget_res);
+		    start_control = 0;     // Cambia el estado para evitar duplicados
 	            end 
 		else begin
-                        start_control = 0; // Reiniciar el flag cuando Start se desactiva
+                       start_control = 1; // Reiniciar el flag cuando Start se desactiva
                      end  
 		end   
 	endtask
@@ -131,15 +129,15 @@ package utilidades_verificacion;
 	    while (1) begin
 	        @(mports.md);
 	        if (mports.md.Done) begin
-	                target_coc = cola_target_coc.pop_back();
-	                target_res = cola_target_res.pop_back();
-               	 	observado_Coc = mports.md.Coc;
-               	 	observado_Res = mports.md.Res;
-//	                $display("Valores de la cola - Cociente: %d, Residuo: %d", target_coc, target_res);
-//	                $display("Num: %d, Den: %d, Esperado Coc: %d, Observado Coc: %d", mports.md.Num, mports.md.Den, target_coc, observado_Coc);
-//	                $display("Num: %d, Den: %d, Esperado Res: %d, Observado Res: %d", mports.md.Num, mports.md.Den, target_res, observado_Res);
-	                assert (observado_Coc == target_coc) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
-	                assert (observado_Res == target_res) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
+                    target_coc = cola_target_coc.pop_back();
+                    target_res = cola_target_res.pop_back();
+              	    observado_Coc = mports.md.Coc;
+              	    observado_Res = mports.md.Res;
+//                  $display("Valores de la cola        -Cociente: %d, Residuo: %d", target_coc, target_res);
+//	            $display("Num: %d, Den: %d, Esperado Coc: %d, Observado Coc: %d", mports.md.Num, mports.md.Den, target_coc, observado_Coc);
+//	            $display("Num: %d, Den: %d, Esperado Res: %d, Observado Res: %d", mports.md.Num, mports.md.Den, target_res, observado_Res);
+                    assert (observado_Coc == target_coc) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
+                    assert (observado_Res == target_res) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
 	        end
 	    end
 	endtask
@@ -152,26 +150,65 @@ package utilidades_verificacion;
         virtual Interface_if.test testar_ports;
         virtual Interface_if.monitor monitorizar_ports;
 
-        covergroup valores @(monitorizar_ports.md);
-	    // Coverpoint para Num
-	    cp1:coverpoint monitorizar_ports.md.Num { 
-//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};        // Captura todos los números negativos
-	        bins zero[] = {0};                 	     // Captura el cero
-	        bins entre_1_y_100[] = {[1:100]};      	     // Captura números del 1 al 100
-//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};  // Captura números mayores que 100
-//		ignore_bins ignorados[] = {[2**(tamanyo):$]};
+	// Covergroup para valores de Num
+	covergroup valores_num @(monitorizar_ports.md);
+	
+	    // Coverpoint para valores positivos pequeños
+	    Num_Pos_small: coverpoint monitorizar_ports.md.Num {                
+	        bins zero[] = {0};                                  // Captura el cero
+	        bins range_1_to_100[] = {[1:100]};                   // Captura números del 1 al 100
+	        bins range_101_to_1000[] = {[101:1000]};             // Captura números del 101 al 1000
 	    }
 	
-	    // Coverpoint para Den
-	    cp2:coverpoint monitorizar_ports.md.Den {
-//	        bins entre_min_y_0[] = {[-2**(tamanyo-1):-1]};         // Captura todos los números negativos
-	        illegal_bins zero[] = {0};                            // Captura el cero
-	        bins entre_1_y_100[] = {[1:100]};                // Captura números del 1 al 100
-//	        bins entre_100_y_max[] = {[101:2**(tamanyo-1)]};   // Captura números mayores que 100
-//		ignore_bins ignorados[] = {[2**(tamanyo):$]};
+	    // Coverpoint para valores positivos grandes
+	    Num_Pos_Large: coverpoint monitorizar_ports.md.Num {                
+	        bins range_1000_to_1M[] = {[1000:1000000]};          // Captura números entre 1000 y 1 millón
+//	        bins range_1M_to_max[] = {[1000001:2147483647]};     // Captura números mayores que 1 millón
 	    }
+	
+	    // Coverpoint para valores negativos pequeños
+	    Num_Neg_Small: coverpoint monitorizar_ports.md.Num { 
+	        bins range_neg_1000_to_neg_100[] = {[-1000:-100]};   // Captura números de -1000 a -100
+	        bins range_neg_100_to_neg_1[] = {[-100:-1]};         // Captura números de -100 a -1
+	    }
+	// Coverpoint para valores negativos grandes
+	    Num_Neg_Large: coverpoint monitorizar_ports.md.Num {                
+	        bins range_neg_1000_to_neg_1M[] = {[-1000000:-1000]};  // Captura números entre  -1 millón y -1000
+//	        bins range_neg_max_to_neg_1M[] = {[-2147483647:-1000001]};     // Captura números mayores que -1 millón
+	    }
+
 	endgroup
 
+	// Covergroup para valores de Den
+	covergroup valores_den @(monitorizar_ports.md);
+	
+	    // Coverpoint para valores positivos pequeños
+	    Den_Pos_Small: coverpoint monitorizar_ports.md.Den {
+	        illegal_bins zero[] = {0};                           // Considera el cero como valor ilegal
+	        bins range_1_to_100[] = {[1:100]};                   // Captura números del 1 al 100
+	        bins range_101_to_1000[] = {[101:1000]};             // Captura números del 101 al 1000
+	    }
+	
+	    // Coverpoint para valores positivos grandes
+	    Den_Pos_Large: coverpoint monitorizar_ports.md.Den {
+	        bins range_1000_to_1M[] = {[1000:1000000]};          // Captura números entre 1000 y 1 millón
+//	        bins range_1M_to_max[] = {[1000001:2147483647]};     // Captura números mayores que 1 millón
+	    }
+	
+	    // Coverpoint para valores negativos pequeños
+	    Den_Neg_Small: coverpoint monitorizar_ports.md.Den { 
+	        bins range_neg_1000_to_neg_100[] = {[-1000:-100]};   // Captura números de -1000 a -100
+	        bins range_neg_100_to_neg_1[] = {[-100:-1]};         // Captura números de -100 a -1
+	    }
+	// Coverpoint para valores negativos grandes
+	    Den_Neg_Large: coverpoint monitorizar_ports.md.Den {                
+	        bins range_neg_1000_to_neg_1M[] = {[-1000000:-1000]};  // Captura números entre  -1 millón y -1000
+//	        bins range_neg_max_to_neg_1M[] = {[-2147483647:-1000001]};     // Captura números mayores que -1 millón
+	    }
+	
+	endgroup
+
+	
 
 	//declaraciones de objetos
         Scoreboard sb;
@@ -186,8 +223,8 @@ package utilidades_verificacion;
 	    //instanciación objetos
 	    busInst = new;               //construimos la clase de valores random
             sb = new(monitorizar_ports); //construimos el scoreboard      
-   	    valores = new(); // Instancia del covergroup
-
+   	    valores_num = new();             // Instancia del covergroup
+	    valores_den = new();             // Instancia del covergroup
 	    end
         endfunction
 
@@ -199,7 +236,7 @@ package utilidades_verificacion;
         endtask
 
         task prueba_random;
-   	 int max_iteraciones = 100; // Define un límite
+   	 int max_iteraciones = 10000; // Define un límite
    	 int iteraciones = 0;
             while (iteraciones < max_iteraciones) begin
                 assert (busInst.randomize()) else $fatal("Randomization failed");
@@ -207,11 +244,11 @@ package utilidades_verificacion;
                 testar_ports.sd.Num <= busInst.num_rand;
                 testar_ports.sd.Den <= busInst.den_rand;
 
-                valores.sample(); // Muestreo para la cobertura    
-         
+                valores_num.sample();                  // Muestreo para la cobertura    
+                valores_den.sample();                  // Muestreo para la cobertura    
 		@(testar_ports.sd);
 
-   		testar_ports.sd.Start <= 1'b1; // Activa `Start` 
+   		testar_ports.sd.Start <= 1'b1;     // Activa `Start` 
 		@(testar_ports.sd);
     		#10 testar_ports.sd.Start <= 1'b0; // Baja `Start` para indicar solo un pulso
 
@@ -233,7 +270,7 @@ program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface
         $display("Iniciando prueba aleatoria...");
 	casos.muestrear;
         casos.prueba_random;
-	$display("Acabando prueba aleatoria...");
+	$display("Prueba aleatoria acabada.  ;)");
         $stop;
     end
 endprogram
