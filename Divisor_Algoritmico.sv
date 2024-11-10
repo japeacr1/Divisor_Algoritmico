@@ -1,4 +1,19 @@
-module Divisor_Algoritmico
+module Divisor_Algoritmico #(parameter tamanyo=32)(Interface_if.duv bus) ; 
+
+sed #(tamanyo) divisor_duv(
+  .CLK   (bus.reloj),     
+  .RSTa  (bus.reset),     
+  .Start (bus.Start),
+  .Num   (bus.Num),
+  .Den   (bus.Den),   
+  .Coc   (bus.Coc),
+  .Res   (bus.Res), 
+  .Done  (bus.Done)    
+  );
+
+endmodule
+
+module sed
 #(parameter tamanyo=32)           
 (input CLK,
 input RSTa,

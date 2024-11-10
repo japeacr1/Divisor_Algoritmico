@@ -43,6 +43,27 @@
                 "clear": true,
                 "close": true
             }
+        },
+        {
+            "label": "Actualizar y subir a GitHub",
+            "type": "shell",
+            "command": "powershell -Command \"git add .; git commit -m 'Actualización de archivos'; git push\"",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Añade, comitea y sube los cambios a GitHub",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            }
         }
     ]
 }
