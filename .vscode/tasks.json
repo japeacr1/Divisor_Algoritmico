@@ -45,7 +45,7 @@
             }
         },
         {
-            "label": "Actualizar y subir a GitHub",
+            "label": "Subir repositorio a GitHub",
             "type": "shell",
             "command": "powershell -Command \"git add .; git commit -m 'Actualización de archivos'; git push\"",
             "group": {
@@ -53,7 +53,28 @@
                 "isDefault": true
             },
             "problemMatcher": [],
-            "detail": "Añade, comitea y sube los cambios a GitHub",
+            "detail": "Sube los cambios a GitHub",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            }
+        },
+        {
+            "label": "Bajar repositorio desde GitHub",
+            "type": "shell",
+            "command": "powershell -Command \"git pull origin main\"",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "Actualiza el repositorio local con los cambios del repositorio remoto en GitHub",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
