@@ -39,9 +39,9 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
     logic Start;
     logic Done;
     logic signed [tamanyo-1:0] Num;
-    logic signed[tamanyo-1:0] Den;
-    logic signed[tamanyo-1:0] Coc;
-    logic signed[tamanyo-1:0] Res;
+    logic signed [tamanyo-1:0] Den;
+    logic signed [tamanyo-1:0] Coc;
+    logic signed [tamanyo-1:0] Res;
 
     // Clocking block para monitoreo 
     clocking md @(posedge reloj);
@@ -190,7 +190,7 @@ package utilidades_verificacion;
 		// Covergroup para valores de Num	
 		covergroup valores_num @(monitorizar_ports.md);
 	  		zero: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {0}; }
+	     		bins zero[] = {0}; }
 	 		rango_100: coverpoint monitorizar_ports.md.Num {
 	     		bins rango[] = {[-100:100]}; }
 	  		rango_100_a_1K: coverpoint monitorizar_ports.md.Num {
@@ -214,8 +214,9 @@ package utilidades_verificacion;
 		// Covergroup para valores de Den
 		covergroup valores_den @(monitorizar_ports.md);	
 			zero: coverpoint monitorizar_ports.md.Den {
-				illegal_bins rango = {0}; 
-				bins default_bin = default; }
+				bins zero[] = {0}; 
+				illegal_bins zero1 = {0}; 
+			}
 			rango_100: coverpoint monitorizar_ports.md.Den {
 				bins rango[] = {[-100:100]}; }
 			rango_100_a_1K: coverpoint monitorizar_ports.md.Den {

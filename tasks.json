@@ -15,7 +15,15 @@
             "detail": "Compila y simula el diseño usando Questasim",
             "options": {
                 "cwd": "${workspaceFolder}"
-            }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
+            },
+            "dependsOn": "Limpiar Directorio de Trabajo"
         },
         {
             "label": "Limpiar Directorio de Trabajo",
@@ -29,6 +37,13 @@
             "detail": "Limpia la carpeta de trabajo eliminando y recreando la carpeta 'work'",
             "options": {
                 "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "close": true
             }
         }
     ]
