@@ -155,7 +155,7 @@ package utilidades_verificacion;
 					observado_Res = mports.md.Res;
 					assert_coc_passed = (observado_Coc == target_coc);
 					assert_res_passed = (observado_Res == target_res);
-					//display_info(mports.md.Num, mports.md.Den, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
+					display_info(mports.md.Num, mports.md.Den, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
 					assert (assert_coc_passed) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
 					assert (assert_res_passed) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
 				end
@@ -280,7 +280,7 @@ package utilidades_verificacion;
             join_none
         endtask
 
-		task prueba_combinaciones0;
+		task prueba_combinaciones;
 			int num[4] = {100, 100, -200, -200};   // Valores de prueba para el Numerador
 			int den[4] = { 50, -50,  150, -150};   // Valores de prueba para el Denominador
 			string sign_num;
@@ -338,41 +338,6 @@ package utilidades_verificacion;
 			print_coverage();
         endtask
 
-		task prueba_combinaciones;
-		int step = 1; 
-		string sign_num;
-		string sign_den;
-		$display("                                                                                ");
-		$display("+------------------------------------------------------------------------------+");
-		$display("|                         Pruebas todas las combinaciones                      |");
-		$display("+------------------------------------------------------------------------------+");
-		for (int num = -10; num < 10; num += step) begin
-			for (int den = -10; den < 10; den += step) begin
-				if (den != 0) begin
-					testar_ports.sd.Num <= num;
-					testar_ports.sd.Den <= den;
-
-					valores_num.sample();                  // Muestreo para la cobertura num    
-					valores_den.sample();                  // Muestreo para la cobertura den    
-
-					@(testar_ports.sd);
-					testar_ports.sd.Start <= 1'b1;
-					@(testar_ports.sd);
-					#10 testar_ports.sd.Start <= 1'b0;
-
-					@(negedge testar_ports.sd.Done);
-					sign_num = (testar_ports.sd.Num > 0) ? "Pos" : "Neg";
-					sign_den = (testar_ports.sd.Den > 0) ? "Pos" : "Neg";
-					//$display("|                                                                              |");
-					//$display("|Combinacion %s/%s:     Num =%3d, Den =%3d                                   |",
-								 // sign_num, sign_den, testar_ports.sd.Num, testar_ports.sd.Den);
-
-				end
-			end
-		end
-		print_coverage();
-	endtask
-
     endclass
 	
 endpackage
@@ -387,9 +352,8 @@ program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface
 		$display("+------------------------------------------------------------------------------+");
 		$display("                                                                                ");
 		casos.muestrear;
-		//casos.prueba_combinaciones0;
-        casos.prueba_random;
 		casos.prueba_combinaciones;
+        casos.prueba_random;
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                               Pruebas acabadas                               |");
 		$display("+------------------------------------------------------------------------------+");
