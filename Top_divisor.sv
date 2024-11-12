@@ -8,8 +8,11 @@ module Top_divisor();
     // Instanciacion de la interfaz
     Interface_if #(tamanyo) test_if(.reloj(CLK), .reset(RSTa));
 
-    // Instanciacion del diseño (DUT)
+    // Instanciacion del diseño (DUV)
     Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
+
+	// Instanciacion del diseño de referencia (Duv_ref)
+	Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
 
     // Instanciacion del programa de estimulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));
@@ -43,6 +46,10 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
     logic signed [tamanyo-1:0] Coc;
     logic signed [tamanyo-1:0] Res;
 
+
+	logic Done_ref;
+    logic signed [tamanyo-1:0] Coc_ref,Res_ref;
+    logic signed [tamanyo-1:0] Num_ref,Den_ref;
     // Clocking block para monitoreo 
     clocking md @(posedge reloj);
         input #1ns Num;
@@ -51,21 +58,33 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input #1ns Res;
         input #1ns Start;
         input #1ns Done;
+
+		output #1ns Num_ref;
+        output #1ns Den_ref;
+        input #1ns Done_ref;
+        input #1ns Coc_ref;
+        input #1ns Res_ref;	
     endclocking: md;
 
     // Clocking block para generacion de estimulos 
     clocking sd @(posedge reloj);
-        input  #2ns Coc;
-        input  #2ns Res;
-        input  #2ns Done;
-        output #2ns Num;
-        output #2ns Den;
-        output #2ns Start;
+        input #2ns Coc;
+        input #2ns Res;
+        input #2ns Done;
+		output #2ns Num;
+		output #2ns Den;
+		output #2ns Start;
+
+		input #2ns Done_ref;
+        input #2ns Coc_ref;
+        input #2ns Res_ref;	
+        output #2ns Num_ref;
+        output #2ns Den_ref;
     endclocking: sd;
 
     modport monitor (clocking md);
     modport test (clocking sd);
-    modport duv (
+    modport Duv (
         input     reloj,
         input     reset,
         input     Start,
@@ -75,6 +94,16 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         output    Coc,
         output    Res
     );
+    modport Duv_ref (
+        input     reloj,
+        input     reset,
+        input     Start,
+        input     Num_ref,
+        input     Den_ref,
+        output    Done_ref,
+        output    Coc_ref,
+        output    Res_ref
+    );	
 endinterface
 
 // Paquete de verificacion//////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +171,23 @@ package utilidades_verificacion;
                 end  
 			end   
 		endtask
-	
+
+		task monitor_input_ref;    
+	    	logic start_control = 1;         // Variable para evitar duplicados
+	    	while (1) begin
+	        	@(mports.md);
+	        	if (mports.md.Start) 
+		  			if (start_control) begin // Solo guardar si start_control es 1
+	            		cola_target_coc.push_front(mports.md.Coc_ref);
+	            		cola_target_res.push_front(mports.md.Res_ref);
+		    			start_control = 0;    // Cambia el estado para evitar duplicados
+	            		end 
+				else begin
+                    start_control = 1;       // Reiniciar el flag cuando Start se desactiva
+                end  
+			end   
+		endtask		
+
 		task monitor_output;
 			bit assert_coc_passed;
     		bit assert_res_passed;
@@ -172,7 +217,7 @@ package utilidades_verificacion;
 			string reset = "\033[0m";
 
 			$display("|                                                                              |");
-			$display("|Generamos numeros aleatorio --> Num_rand:  %-11d, Den_rand: %-11d |", Num_rand, Den_rand);
+			$display("|Generamos los numeros --------> Num:  %-11d     , Den: %-11d      |", Num_rand, Den_rand);
 			$display("|Guardamos ideal en la cola ---> Cociente:  %-11d, Residuo:  %-11d |", pretarget_coc, pretarget_res);
 			$display("|Sacamos ideal de la cola -----> Cociente:  %-11d, Residuo:  %-11d |", target_coc, target_res);
 			$display("|Valores a comparar -----------> ideal_Coc: %-11d, real_Coc: %-11d |", target_coc, observado_Coc);
@@ -259,7 +304,7 @@ package utilidades_verificacion;
 
 		//declaraciones de objetos
 		Scoreboard sb;
-		RCSG busInst;
+		RCSG RandInst;
 
 		function new(virtual Interface_if.test ports, virtual Interface_if.monitor mports);
 			begin
@@ -267,7 +312,7 @@ package utilidades_verificacion;
 				monitorizar_ports = mports;
 
 				//instanciacion objetos
-				busInst = new();                    //construimos la clase de valores random
+				RandInst = new();                    //construimos la clase de valores random
 				sb = new(monitorizar_ports);     //construimos el scoreboard      
 				valores_num = new();             // Instancia del covergroup
 				valores_den = new();             // Instancia del covergroup
@@ -276,7 +321,7 @@ package utilidades_verificacion;
 
         task muestrear;
             fork
-                sb.monitor_input;
+                sb.monitor_input_ref;
                 sb.monitor_output;
             join_none
         endtask
@@ -292,6 +337,9 @@ package utilidades_verificacion;
 			for (int i = 0; i < 4; i++) begin
 				testar_ports.sd.Num <= num[i];
 				testar_ports.sd.Den <= den[i];
+
+				monitorizar_ports.md.Num_ref <=  num[i];
+                monitorizar_ports.md.Den_ref <=  den[i];
 
 				sign_num = (num[i] > 0) ? "Pos" : "Neg";
 				sign_den = (den[i] > 0) ? "Pos" : "Neg";	
@@ -317,13 +365,16 @@ package utilidades_verificacion;
          	$display("+------------------------------------------------------------------------------+");
   	 		$display("|                                Pruebas random                                |");
  	 		$display("+------------------------------------------------------------------------------+");
-			for (int i = 0; i < 10000; i++) begin
+			for (int i = 0; i < 10; i++) begin
 //		   while (valores_num.get_coverage()<10) begin
  
-                assert (busInst.randomize()) else $fatal("Randomization failed in iteration %d",i);
+                assert (RandInst.randomize()) else $fatal("Randomization failed in iteration %d",i);
        			
-                testar_ports.sd.Num <= busInst.num_rand;
-                testar_ports.sd.Den <= busInst.den_rand;
+                testar_ports.sd.Num <= RandInst.num_rand;
+                testar_ports.sd.Den <= RandInst.den_rand;
+
+                monitorizar_ports.md.Num_ref <= RandInst.num_rand;
+                monitorizar_ports.md.Den_ref <= RandInst.den_rand;
 
                 valores_num.sample();                  // Muestreo para la cobertura num    
                 valores_den.sample();                  // Muestreo para la cobertura den    

@@ -8,16 +8,29 @@
 // Nombre del archivo: divisor_parallel.sv
 //
 // Descripcion: Este codigo SystemVerilog implementa un multiplicador
-// de tamanyo parametrizable pero paralelo para que los alumnos puedan empezar a testear rápìdo
+// de tamanyo parametrizable pero paralelo para que los alumnos puedan empezar a testear rï¿½pï¿½do
 //
 // --------------------------------------------------------------------
-// Versión: V1.0 | Fecha Modificación: 01/10/2022
+// Versiï¿½n: V1.0 | Fecha Modificaciï¿½n: 01/10/2022
 //
 // Autores: Rafael Gadea
 // --------------------------------------------------------------------
-module Divisor_Algoritmico_pruebas
+module Divisor_Algoritmico_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus) ; 
 
+Divisor_Algoritmico_pruebas_duv #(tamanyo) divisor_duv(
+  .CLK   (bus.reloj),     
+  .RSTa  (bus.reset),     
+  .Start (bus.Start),
+  .Num   (bus.Num_ref),
+  .Den   (bus.Den_ref),   
+  .Coc   (bus.Coc_ref),
+  .Res   (bus.Res_ref), 
+  .Done  (bus.Done_ref)    
+  );
 
+endmodule
+
+module Divisor_Algoritmico_pruebas_duv
 #(parameter tamanyo=32)
 (input CLK,
 input RSTa,
@@ -28,9 +41,6 @@ input logic [tamanyo-1:0] Den,
 output logic [tamanyo-1:0] Coc,
 output logic [tamanyo-1:0] Res,
 output Done);
-
-
-
 
 
 logic signed [tamanyo-1:0] Coc_temp;
