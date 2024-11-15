@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-//55
+
 module Top_divisor();
     parameter tamanyo = 32;
     logic CLK;
