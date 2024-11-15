@@ -46,12 +46,12 @@ state_t state;
 		
 	always_ff @(posedge CLK or negedge RSTa) begin
         if (!RSTa) begin
-            ACCU <= 0;
-            Q <= 0;
-            CONT <= 0;
-            fin <= 0;
-            Coc <= 0;
-            Res <= 0;
+            ACCU  <= '0;
+            Q     <= '0;
+            CONT  <= '0;
+            fin   <=  0;
+            Coc   <= '0;
+            Res   <= '0;
             state <= D0;
 			end 
 		else 
@@ -59,7 +59,7 @@ state_t state;
                 D0: begin
                     fin <= 0;
                     if (Start) begin
-                        ACCU <= 0;
+                        ACCU <= '0;
                         CONT <= tamanyo - 1;
                         SignNum <= Num[tamanyo - 1];
                         SignDen <= Den[tamanyo - 1];

@@ -176,10 +176,12 @@ package utilidades_verificacion;
 	    	logic start_control = 1;         // Variable para evitar duplicados
 	    	while (1) begin
 	        	@(mports.md);
-	        	if (mports.md.Start) 
+	        	if (mports.md.Done_ref) 
 		  			if (start_control) begin // Solo guardar si start_control es 1
-	            		cola_target_coc.push_front(mports.md.Coc_ref);
-	            		cola_target_res.push_front(mports.md.Res_ref);
+						pretarget_coc = mports.md.Coc_ref;
+						pretarget_res = mports.md.Res_ref;
+	            		cola_target_coc.push_front(pretarget_coc);
+	            		cola_target_res.push_front(pretarget_res);
 		    			start_control = 0;    // Cambia el estado para evitar duplicados
 	            		end 
 				else begin
@@ -200,7 +202,7 @@ package utilidades_verificacion;
 					observado_Res = mports.md.Res;
 					assert_coc_passed = (observado_Coc == target_coc);
 					assert_res_passed = (observado_Res == target_res);
-					display_info(mports.md.Num, mports.md.Den, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
+					display_info(mports.md.Num, mports.md.Den, mports.md.Num_ref, mports.md.Den_ref, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
 					assert (assert_coc_passed) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
 					assert (assert_res_passed) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
 				end
@@ -208,7 +210,7 @@ package utilidades_verificacion;
 		endtask
 
 		task display_info(   //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
-			input int Num_rand, Den_rand, pretarget_coc, pretarget_res,
+			input int Num, Den, Num_ref, Den_ref, pretarget_coc, pretarget_res,
 			target_coc, target_res, observado_Coc, observado_Res,
 			input bit assert_coc_passed, assert_res_passed
 		);
@@ -217,7 +219,9 @@ package utilidades_verificacion;
 			string reset = "\033[0m";
 
 			$display("|                                                                              |");
-			$display("|Generamos los numeros --------> Num:  %-11d     , Den: %-11d      |", Num_rand, Den_rand);
+			$display("|Numeros asignados al duv -----> Num:  %-11d     , Den: %-11d      |", Num, Den);
+			$display("|Numeros asignados al duv_ref -> Num:  %-11d     , Den: %-11d      |", Num_ref, Den_ref);
+			$display("|                                                                              |");
 			$display("|Guardamos ideal en la cola ---> Cociente:  %-11d, Residuo:  %-11d |", pretarget_coc, pretarget_res);
 			$display("|Sacamos ideal de la cola -----> Cociente:  %-11d, Residuo:  %-11d |", target_coc, target_res);
 			$display("|Valores a comparar -----------> ideal_Coc: %-11d, real_Coc: %-11d |", target_coc, observado_Coc);
