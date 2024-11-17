@@ -12,8 +12,8 @@ module Top_divisor();
     Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
 //	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
 
-	// Instanciacion del diseño de referencia (Duv_ref)
-	Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
+    // Instanciacion del diseño de referencia (Duv_ref)
+    Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
 
     // Instanciacion del programa de estimulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));
@@ -34,7 +34,7 @@ module Top_divisor();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-		$dumpvars(1, Top_divisor.Duv.divisor_duv);
+        $dumpvars(1, Top_divisor.Duv.divisor_duv);
        // $dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
     end
 endmodule
@@ -49,7 +49,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
     logic signed [tamanyo-1:0] Res;
 
 
-	logic Done_ref;
+    logic Done_ref;
     logic signed [tamanyo-1:0] Coc_ref,Res_ref;
     logic signed [tamanyo-1:0] Num_ref,Den_ref;
     // Clocking block para monitoreo 
@@ -61,7 +61,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input #1ns Start;
         input #1ns Done;
 
-		input #1ns Num_ref;
+        input #1ns Num_ref;
         input #1ns Den_ref;
         input #1ns Done_ref;
         input #1ns Coc_ref;
@@ -73,11 +73,11 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input #2ns Coc;
         input #2ns Res;
         input #2ns Done;
-		output #2ns Num;
-		output #2ns Den;
-		output #2ns Start;
+        output #2ns Num;
+        output #2ns Den;
+        output #2ns Start;
 
-		input #2ns Done_ref;
+        input #2ns Done_ref;
         input #2ns Coc_ref;
         input #2ns Res_ref;	
         output #2ns Num_ref;
@@ -118,9 +118,9 @@ package utilidades_verificacion;
         randc logic signed [tamanyo-1:0] den_rand;
 
         constraint den_valido { den_rand != 0; }
-    	constraint num_constraint {
-			num_rand inside {[-2147483647:2147483647]};
-        	num_rand dist {
+        constraint num_constraint {
+            num_rand inside {[-2147483647:2147483647]};
+            num_rand dist {
             	[-100 : 100] := 30,
             	[-1000 : -100] := 1, [100 : 1000] := 1,
             	[-10000 : -1000] := 1, [1000 : 10000] := 1,
@@ -132,7 +132,7 @@ package utilidades_verificacion;
 
     	constraint den_constraint {
 			den_rand inside {[-2147483647:2147483647]};
-        	den_rand dist {
+			den_rand dist {
             	[-100 : 100] := 30,
             	[-1000 : -100] := 10, [100 : 1000] := 10,
             	[-10000 : -1000] := 10, [1000 : 10000] :=10,
@@ -144,24 +144,24 @@ package utilidades_verificacion;
     endclass
 
     class Scoreboard;
- 		logic signed[tamanyo-1:0] cola_target_coc [$];
+		logic signed[tamanyo-1:0] cola_target_coc [$];
 		logic signed[tamanyo-1:0] cola_target_res [$];
 		logic signed[tamanyo-1:0] pretarget_coc, pretarget_res;
-        logic signed[tamanyo-1:0] target_coc, target_res;
-    	logic signed[tamanyo-1:0] observado_Coc, observado_Res;
+		logic signed[tamanyo-1:0] target_coc, target_res;
+		logic signed[tamanyo-1:0] observado_Coc, observado_Res;
 
-        virtual Interface_if.monitor mports;	
+		virtual Interface_if.monitor mports;	
 
-        function new(virtual Interface_if.monitor mpuertos);
+		function new(virtual Interface_if.monitor mpuertos);
             this.mports = mpuertos;	   
-        endfunction
+		endfunction
 	
 		task monitor_input;    
-	    	logic start_control = 1;         // Variable para evitar duplicados
-	    	while (1) begin
-	        	@(mports.md);
-	        	if (mports.md.Start) 
-		  			if (start_control) begin // Solo guardar si start_control es 1
+			logic start_control = 1;         // Variable para evitar duplicados
+			while (1) begin
+				@(mports.md);
+				if (mports.md.Start) 
+					if (start_control) begin // Solo guardar si start_control es 1
 	            		pretarget_coc = mports.md.Num / mports.md.Den;
 	            		pretarget_res = mports.md.Num % mports.md.Den;
 	            		cola_target_coc.push_front(pretarget_coc);
