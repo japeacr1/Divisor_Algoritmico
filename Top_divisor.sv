@@ -9,8 +9,8 @@ module Top_divisor();
     Interface_if #(tamanyo) test_if(.reloj(CLK), .reset(RSTa));
 
     // Instanciacion del diseño (DUV)
-//    Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
-	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
+    Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
+//	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
 
 	// Instanciacion del diseño de referencia (Duv_ref)
 	Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
@@ -34,7 +34,8 @@ module Top_divisor();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-        $dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
+		$dumpvars(1, Top_divisor.Duv.divisor_duv);
+       // $dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
     end
 endmodule
 
@@ -60,8 +61,8 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input #1ns Start;
         input #1ns Done;
 
-		output #1ns Num_ref;
-        output #1ns Den_ref;
+		input #1ns Num_ref;
+        input #1ns Den_ref;
         input #1ns Done_ref;
         input #1ns Coc_ref;
         input #1ns Res_ref;	
@@ -326,8 +327,8 @@ package utilidades_verificacion;
 
         task muestrear;
             fork
-				sb.monitor_input;
-                //sb.monitor_input_ref;
+				//sb.monitor_input;
+                sb.monitor_input_ref;
                 sb.monitor_output;
             join_none
         endtask
@@ -344,8 +345,8 @@ package utilidades_verificacion;
 				testar_ports.sd.Num <= num[i];
 				testar_ports.sd.Den <= den[i];
 
-				monitorizar_ports.md.Num_ref <=  num[i];
-                monitorizar_ports.md.Den_ref <=  den[i];
+				testar_ports.sd.Num_ref <=  num[i];
+                testar_ports.sd.Den_ref <=  den[i];
 
 				sign_num = (num[i] > 0) ? "Pos" : "Neg";
 				sign_den = (den[i] > 0) ? "Pos" : "Neg";	
@@ -379,8 +380,8 @@ package utilidades_verificacion;
                 testar_ports.sd.Num <= RandInst.num_rand;
                 testar_ports.sd.Den <= RandInst.den_rand;
 
-                monitorizar_ports.md.Num_ref <= RandInst.num_rand;
-                monitorizar_ports.md.Den_ref <= RandInst.den_rand;
+                testar_ports.sd.Num_ref <= RandInst.num_rand;
+                testar_ports.sd.Den_ref <= RandInst.den_rand;
 
                 valores_num.sample();                  // Muestreo para la cobertura num    
                 valores_den.sample();                  // Muestreo para la cobertura den    

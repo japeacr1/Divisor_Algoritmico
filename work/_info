@@ -10,17 +10,17 @@ cModel Technology
 Z0 dC:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico
 T_opt
 !s11d utilidades_verificacion C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 1 Interface_if 1 C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 
-Z1 !s110 1731881987
-V>cfcam?GH6Rmh9A_;BSzh0
+!s110 1731884858
+VF@lodAW3Td]4lVQdHT_EF2
 04 11 4 work Top_divisor fast 0
-=1-7c10c924174f-673a6c03-25d-f5c
+=1-7c10c924174f-673a7739-3ce-3134
 o-quiet -auto_acc_if_foreign -work work
-Z2 tCvgOpt 0
+Z1 tCvgOpt 0
 n@_opt
 OL;O;2020.2;71
 vDivisor_Algoritmico
-Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-R1
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1731884857
 !i10b 1
 !s100 REhdFQ<>UP0;;8O3[Ol2S1
 Z4 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -37,16 +37,16 @@ Z10 OL;L;2020.2;71
 r1
 !s85 0
 31
-Z11 !s108 1731881987.000000
+Z11 !s108 1731884857.000000
 Z12 !s107 Top_divisor.sv|Divisor_Algoritmico.sv|Divisor_Algoritmico_Seg.sv|divisor_parallel-1.sv|
 Z13 !s90 divisor_parallel-1.sv|Divisor_Algoritmico_Seg.sv|Divisor_Algoritmico.sv|Top_divisor.sv|
 !i113 0
 Z14 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R2
+R1
 n@divisor_@algoritmico
 vDivisor_Algoritmico_duv
+R2
 R3
-R1
 !i10b 1
 !s100 0fa2?MToY1JZ9W^?@Y2200
 R4
@@ -68,11 +68,11 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@divisor_@algoritmico_duv
 vDivisor_Algoritmico_pruebas
+R2
 R3
-R1
 !i10b 1
 !s100 =YPN8VzTSd]>;G^8fHUFj3
 R4
@@ -94,11 +94,11 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@divisor_@algoritmico_pruebas
 vDivisor_Algoritmico_pruebas_duv
+R2
 R3
-R1
 !i10b 1
 !s100 hU3ifl05;^9V0de2C:oSo1
 R4
@@ -120,11 +120,11 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@divisor_@algoritmico_pruebas_duv
 vDivisor_Algoritmico_Seg
+R2
 R3
-R1
 !i10b 1
 !s100 nY4ePjiiM]GT=Xj2<cDoa3
 R4
@@ -146,11 +146,11 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@divisor_@algoritmico_@seg
 vDivisor_Algoritmico_seg_duv
+R2
 R3
-R1
 !i10b 1
 !s100 Ff3N<g?@EJMK<c83Re`l<1
 R4
@@ -172,24 +172,24 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@divisor_@algoritmico_seg_duv
 4estimulos
+R2
+DXx4 work 23 utilidades_verificacion 0 22 QmJ7=Wb^4<[kldbHO]IEH1
 R3
-DXx4 work 23 utilidades_verificacion 0 22 fjgPX2FF;A5LNoC?URXoJ0
-R1
 !i10b 1
-!s100 jSm^L]VjK>kSg1K@Pjc=o1
+!s100 @[TOSO_aWhBf1GYAcSjN<0
 R4
-IzYbFHY7=TZ;NG=fNmTZ9O1
+I>FGH^T3o]f5YjVDGo3FG@2
 R5
 S1
 R0
-Z21 w1731881703
+Z21 w1731884841
 Z22 8Top_divisor.sv
 Z23 FTop_divisor.sv
 !i122 0
-L0 404 0
+L0 405 0
 R10
 r1
 !s85 0
@@ -199,14 +199,14 @@ R12
 R13
 !i113 0
 R14
-R2
-YInterface_if
-R3
 R1
+YInterface_if
+R2
+R3
 !i10b 1
-!s100 bH5BTnD7Bd0[UbIY[0DjA2
+!s100 FAUW^z0`DJ4gL61_gnQ900
 R4
-IMoT_n?igQDRUTjf>LJCFM1
+IES5g5SF?R3h@;:h@2JJWg0
 R5
 S1
 R0
@@ -214,7 +214,7 @@ R21
 R22
 R23
 !i122 0
-L0 42 0
+L0 43 0
 R10
 r1
 !s85 0
@@ -224,15 +224,15 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@interface_if
 vTop_divisor
+R2
 R3
-R1
 !i10b 1
-!s100 a@<nLPIeiUmZ=JCgb9VNz2
+!s100 kAhddNbLTEzKY]LkZjETG1
 R4
-IzMzdk9aHXYEW7IeB4nhC:2
+ISoS1jAFAmTm2]7eX1ZIQ_0
 R5
 S1
 R0
@@ -240,7 +240,7 @@ R21
 R22
 R23
 !i122 0
-L0 3 37
+L0 3 38
 R10
 r1
 !s85 0
@@ -250,24 +250,24 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
 n@top_divisor
 Xutilidades_verificacion
 !s115 Interface_if
+R2
 R3
-R1
 !i10b 1
-!s100 E2IB?lDX_FEKYD>i<=:F>1
+!s100 D<MU>J]gRT0U=_1>Zia`N1
 R4
-IfjgPX2FF;A5LNoC?URXoJ0
-VfjgPX2FF;A5LNoC?URXoJ0
+IQmJ7=Wb^4<[kldbHO]IEH1
+VQmJ7=Wb^4<[kldbHO]IEH1
 S1
 R0
 R21
 R22
 R23
 !i122 0
-L0 111 0
+L0 112 0
 R10
 r1
 !s85 0
@@ -277,4 +277,4 @@ R12
 R13
 !i113 0
 R14
-R2
+R1
