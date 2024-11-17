@@ -51,3 +51,4 @@ Clone the repository
 ```bash
 git clone https://github.com/realhastalamuerte23/Divisor_Algoritmico.git
 ```
+![imagen1](https://github.com/realhastalamuerte23/Divisor_Algoritmico/blob/main/Top.png)
