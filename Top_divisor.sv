@@ -9,7 +9,8 @@ module Top_divisor();
     Interface_if #(tamanyo) test_if(.reloj(CLK), .reset(RSTa));
 
     // Instanciacion del diseño (DUV)
-    Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
+//    Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
+	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
 
 	// Instanciacion del diseño de referencia (Duv_ref)
 	Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
@@ -110,7 +111,7 @@ endinterface
 package utilidades_verificacion;
 
     parameter tamanyo = 32;
-    
+
     class RCSG;
         randc logic signed [tamanyo-1:0] num_rand;
         randc logic signed [tamanyo-1:0] den_rand;
@@ -325,7 +326,8 @@ package utilidades_verificacion;
 
         task muestrear;
             fork
-                sb.monitor_input_ref;
+				sb.monitor_input;
+                //sb.monitor_input_ref;
                 sb.monitor_output;
             join_none
         endtask

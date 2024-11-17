@@ -48,17 +48,21 @@ state_t state;
         if (!RSTa) begin
             ACCU  <= '0;
             Q     <= '0;
+            M     <= '0;
             CONT  <= '0;
             fin   <=  0;
             Coc   <= '0;
             Res   <= '0;
             state <= D0;
+            SignNum <= 0;
+            SignDen <= 0;
 			end 
 		else 
             case (state)
                 D0: begin
                     fin <= 0;
                     if (Start) begin
+                        assert (Den!=0) else $error("Ha ocurrido un error grave. El denominador no puede ser 0");
                         ACCU <= '0;
                         CONT <= tamanyo - 1;
                         SignNum <= Num[tamanyo - 1];

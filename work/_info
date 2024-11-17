@@ -1,0 +1,254 @@
+m255
+K4
+z2
+!s11f vlog 2020.2 2020.04, Apr 19 2020
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico
+T_opt
+!s11d utilidades_verificacion C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 1 Interface_if 1 C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 
+Z1 !s110 1731880071
+VZ^SQe`N9HX6VaUYmP;KV<3
+04 11 4 work Top_divisor fast 0
+=1-7c10c924174f-673a6487-28e-83a4
+o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2020.2;71
+vDivisor_Algoritmico
+Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R1
+!i10b 1
+!s100 REhdFQ<>UP0;;8O3[Ol2S1
+Z4 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IZJYnZ4``L?>f6j>oQ]KQ80
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z6 w1731878813
+Z7 8Divisor_Algoritmico.sv
+Z8 FDivisor_Algoritmico.sv
+!i122 0
+Z9 L0 1 14
+Z10 OL;L;2020.2;71
+r1
+!s85 0
+31
+Z11 !s108 1731880071.000000
+Z12 !s107 Top_divisor.sv|Divisor_Algoritmico.sv|Divisor_Algoritmico_Seg.sv|divisor_parallel-1.sv|
+Z13 !s90 divisor_parallel-1.sv|Divisor_Algoritmico_Seg.sv|Divisor_Algoritmico.sv|Top_divisor.sv|
+!i113 0
+Z14 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+n@divisor_@algoritmico
+vDivisor_Algoritmico_duv
+R3
+R1
+!i10b 1
+!s100 0fa2?MToY1JZ9W^?@Y2200
+R4
+I;F105zNda=m;3gb3B:1^Y3
+R5
+S1
+R0
+R6
+R7
+R8
+!i122 0
+L0 16 91
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@divisor_@algoritmico_duv
+vDivisor_Algoritmico_pruebas
+R3
+R1
+!i10b 1
+!s100 =YPN8VzTSd]>;G^8fHUFj3
+R4
+IdQb2e@2W_NUL^jXjdF8OZ3
+R5
+S1
+R0
+Z15 w1731666828
+Z16 8divisor_parallel-1.sv
+Z17 Fdivisor_parallel-1.sv
+!i122 0
+L0 18 14
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@divisor_@algoritmico_pruebas
+vDivisor_Algoritmico_pruebas_duv
+R3
+R1
+!i10b 1
+!s100 hU3ifl05;^9V0de2C:oSo1
+R4
+Ig0e_i0V?SF=eI^mgQChi51
+R5
+S1
+R0
+R15
+R16
+R17
+!i122 0
+L0 33 48
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@divisor_@algoritmico_pruebas_duv
+vDivisor_Algoritmico_Seg
+R3
+R1
+!i10b 1
+!s100 <3naCJK=[Eb5FCF>CN@aW3
+R4
+IB[DCYRbkGTRHbf@=RfQZg2
+R5
+S1
+R0
+w1731880059
+8Divisor_Algoritmico_Seg.sv
+FDivisor_Algoritmico_Seg.sv
+!i122 0
+R9
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@divisor_@algoritmico_@seg
+4estimulos
+R3
+DXx4 work 23 utilidades_verificacion 0 22 8GdM1LiKM>UIb0^nS]6LP1
+R1
+!i10b 1
+!s100 5=k`2zg<L7?oEWe5__TMI3
+R4
+I8SjiD3>Qflan9jFfM1`Rm2
+R5
+S1
+R0
+Z18 w1731880027
+Z19 8Top_divisor.sv
+Z20 FTop_divisor.sv
+!i122 0
+L0 403 0
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+YInterface_if
+R3
+R1
+!i10b 1
+!s100 BPBA_UC8>V4BEF4B>hUj@2
+R4
+IZ8@g:cl9ZAQ@c=z5j7kB81
+R5
+S1
+R0
+R18
+R19
+R20
+!i122 0
+L0 41 0
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@interface_if
+vTop_divisor
+R3
+R1
+!i10b 1
+!s100 gKRRP:LT[TmRG_T2G9hj13
+R4
+Izm6DhHaj3EC2lM9MW`Hn00
+R5
+S1
+R0
+R18
+R19
+R20
+!i122 0
+L0 3 36
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@top_divisor
+Xutilidades_verificacion
+!s115 Interface_if
+R3
+R1
+!i10b 1
+!s100 zlGo:f2l58f26`7EH<jmi0
+R4
+I8GdM1LiKM>UIb0^nS]6LP1
+V8GdM1LiKM>UIb0^nS]6LP1
+S1
+R0
+R18
+R19
+R20
+!i122 0
+L0 110 0
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2

@@ -1,10 +1,13 @@
 # do run.do
 # QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
-# Start time: 11:43:21 on Nov 15,2024
-# vlog divisor_parallel-1.sv Divisor_Algoritmico.sv Top_divisor.sv 
+# Start time: 22:47:51 on Nov 17,2024
+# vlog divisor_parallel-1.sv Divisor_Algoritmico_Seg.sv Divisor_Algoritmico.sv Top_divisor.sv 
 # -- Compiling module Divisor_Algoritmico_pruebas
 # -- Compiling module Divisor_Algoritmico_pruebas_duv
+# -- Compiling module Divisor_Algoritmico_Seg
+# -- Compiling module Divisor_Algoritmico_duv
 # -- Compiling module Divisor_Algoritmico
+# ** Warning: Divisor_Algoritmico.sv(16): (vlib-2275) Existing module 'Divisor_Algoritmico_duv' will be overwritten.
 # -- Compiling module Divisor_Algoritmico_duv
 # -- Compiling module Top_divisor
 # -- Compiling interface Interface_if
@@ -13,11 +16,12 @@
 # -- Importing package utilidades_verificacion
 # 
 # Top level modules:
+# 	Divisor_Algoritmico
 # 	Top_divisor
-# End time: 11:43:21 on Nov 15,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
+# End time: 22:47:51 on Nov 17,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
 # vsim Top_divisor 
-# Start time: 11:43:21 on Nov 15,2024
+# Start time: 22:47:51 on Nov 17,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2020.2 win64 Apr 19 2020
@@ -35,7 +39,7 @@
 # //
 # Loading sv_std.std
 # Loading work.Top_divisor(fast)
-# Loading work.Divisor_Algoritmico(fast)
+# Loading work.Divisor_Algoritmico_Seg(fast)
 # Loading work.Divisor_Algoritmico_pruebas(fast)
 # Loading work.Interface_if(fast)
 # Loading work.utilidades_verificacion(fast)
@@ -48,10 +52,10 @@
 #    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 205
 # ** Warning: (vsim-8441) Clocking block output testar_ports.sd.Den is not legal in this
 # or another expression.
-#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 343
+#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 344
 # ** Warning: (vsim-8441) Clocking block output testar_ports.sd.Num is not legal in this
 # or another expression.
-#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 342
+#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 343
 # ** Warning: (vsim-8549) After dropping the illegal, ignore or invalid values, the values list associated with array bin 'zero' in Coverpoint 'zero' of Covergroup instance '\/utilidades_verificacion::environment::valores_den ' has converged to empty list. The bin will be taken out of coverage calculation.
 #    Time: 0 ps  Iteration: 0  Instance: /Top_divisor/estim1
 # ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'zero' of covergroup instance '\/utilidades_verificacion::environment::valores_den '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
@@ -231,7 +235,7 @@
 # +------------------------------------------------------------------------------+
 # |                               Pruebas acabadas                               |
 # +------------------------------------------------------------------------------+
-# ** Note: $stop    : Top_divisor.sv(416)
+# ** Note: $stop    : Top_divisor.sv(417)
 #    Time: 9665 ns  Iteration: 2  Instance: /Top_divisor/estim1
-# Break at Top_divisor.sv line 416
-# Stopped at Top_divisor.sv line 416
+# Break at Top_divisor.sv line 417
+# Stopped at Top_divisor.sv line 417
