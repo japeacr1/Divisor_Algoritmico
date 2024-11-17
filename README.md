@@ -43,4 +43,8 @@
     |                                    +-------+    +-------+     |
     |                                                               |
     +---------------------------------------------------------------+
-
+    
+Clone the repository
+```bash
+git clone https://github.com/rahuldkjain/github-profile-readme-generator.git
+```
