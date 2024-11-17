@@ -55,3 +55,16 @@
 # ** Warning: (vsim-8441) Clocking block output testar_ports.sd.Num is not legal in this
 # or another expression.
 #    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 344
+# ** Warning: (vsim-8549) After dropping the illegal, ignore or invalid values, the values list associated with array bin 'zero' in Coverpoint 'zero' of Covergroup instance '\/utilidades_verificacion::environment::valores_den ' has converged to empty list. The bin will be taken out of coverage calculation.
+#    Time: 0 ps  Iteration: 0  Instance: /Top_divisor/estim1
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'zero' of covergroup instance '\/utilidades_verificacion::environment::valores_den '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ps  Iteration: 0  Instance: /Top_divisor/estim1
+# +------------------------------------------------------------------------------+
+# |                             Iniciando pruebas...                             |
+# +------------------------------------------------------------------------------+
+#                                                                                 
+# +------------------------------------------------------------------------------+
+# |                          Pruebas combinacionales                             |
+# +------------------------------------------------------------------------------+
+# |                                                                              |
+# |Combinacion Pos/Pos:     Num =        100, Den =         50                   |
