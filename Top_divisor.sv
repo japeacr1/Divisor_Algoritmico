@@ -34,7 +34,7 @@ module Top_divisor();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-        $dumpvars(1, Top_divisor.Duv.divisor_duv);
+        $dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
     end
 endmodule
 

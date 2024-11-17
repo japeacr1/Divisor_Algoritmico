@@ -1,6 +1,6 @@
 module Divisor_Algoritmico_Seg #(parameter tamanyo=32)(Interface_if.Duv bus) ; 
 
-Divisor_Algoritmico_duv #(tamanyo) divisor_duv(
+Divisor_Algoritmico_seg_duv #(tamanyo) divisor_seg_duv(
   .CLK   (bus.reloj),     
   .RSTa  (bus.reset),     
   .Start (bus.Start),
@@ -13,7 +13,7 @@ Divisor_Algoritmico_duv #(tamanyo) divisor_duv(
 
 endmodule
 
-module Divisor_Algoritmico_duv
+module Divisor_Algoritmico_seg_duv
 #(parameter tamanyo=32)           
 (input CLK,
 input RSTa,
@@ -57,7 +57,7 @@ genvar i;
             end
     end
     generate
-        for (i=(etapas-1); i>=0; i=i-1)
+        for (i=(etapas-2); i>-1; i=i-1)
             begin
             always_ff @(posedge CLK or negedge RSTa)
                 begin

@@ -10,10 +10,10 @@ cModel Technology
 Z0 dC:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico
 T_opt
 !s11d utilidades_verificacion C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 1 Interface_if 1 C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 
-Z1 !s110 1731880071
-VZ^SQe`N9HX6VaUYmP;KV<3
+Z1 !s110 1731881987
+V>cfcam?GH6Rmh9A_;BSzh0
 04 11 4 work Top_divisor fast 0
-=1-7c10c924174f-673a6487-28e-83a4
+=1-7c10c924174f-673a6c03-25d-f5c
 o-quiet -auto_acc_if_foreign -work work
 Z2 tCvgOpt 0
 n@_opt
@@ -37,7 +37,7 @@ Z10 OL;L;2020.2;71
 r1
 !s85 0
 31
-Z11 !s108 1731880071.000000
+Z11 !s108 1731881987.000000
 Z12 !s107 Top_divisor.sv|Divisor_Algoritmico.sv|Divisor_Algoritmico_Seg.sv|divisor_parallel-1.sv|
 Z13 !s90 divisor_parallel-1.sv|Divisor_Algoritmico_Seg.sv|Divisor_Algoritmico.sv|Top_divisor.sv|
 !i113 0
@@ -126,15 +126,15 @@ vDivisor_Algoritmico_Seg
 R3
 R1
 !i10b 1
-!s100 <3naCJK=[Eb5FCF>CN@aW3
+!s100 nY4ePjiiM]GT=Xj2<cDoa3
 R4
-IB[DCYRbkGTRHbf@=RfQZg2
+I1PEML;:XWLd_9U7E7OHSB2
 R5
 S1
 R0
-w1731880059
-8Divisor_Algoritmico_Seg.sv
-FDivisor_Algoritmico_Seg.sv
+Z18 w1731881970
+Z19 8Divisor_Algoritmico_Seg.sv
+Z20 FDivisor_Algoritmico_Seg.sv
 !i122 0
 R9
 R10
@@ -148,22 +148,48 @@ R13
 R14
 R2
 n@divisor_@algoritmico_@seg
-4estimulos
+vDivisor_Algoritmico_seg_duv
 R3
-DXx4 work 23 utilidades_verificacion 0 22 8GdM1LiKM>UIb0^nS]6LP1
 R1
 !i10b 1
-!s100 5=k`2zg<L7?oEWe5__TMI3
+!s100 Ff3N<g?@EJMK<c83Re`l<1
 R4
-I8SjiD3>Qflan9jFfM1`Rm2
+IkfUUjizC6Vg919FE_@dBz2
 R5
 S1
 R0
-Z18 w1731880027
-Z19 8Top_divisor.sv
-Z20 FTop_divisor.sv
+R18
+R19
+R20
 !i122 0
-L0 403 0
+L0 16 90
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+n@divisor_@algoritmico_seg_duv
+4estimulos
+R3
+DXx4 work 23 utilidades_verificacion 0 22 fjgPX2FF;A5LNoC?URXoJ0
+R1
+!i10b 1
+!s100 jSm^L]VjK>kSg1K@Pjc=o1
+R4
+IzYbFHY7=TZ;NG=fNmTZ9O1
+R5
+S1
+R0
+Z21 w1731881703
+Z22 8Top_divisor.sv
+Z23 FTop_divisor.sv
+!i122 0
+L0 404 0
 R10
 r1
 !s85 0
@@ -178,17 +204,17 @@ YInterface_if
 R3
 R1
 !i10b 1
-!s100 BPBA_UC8>V4BEF4B>hUj@2
+!s100 bH5BTnD7Bd0[UbIY[0DjA2
 R4
-IZ8@g:cl9ZAQ@c=z5j7kB81
+IMoT_n?igQDRUTjf>LJCFM1
 R5
 S1
 R0
-R18
-R19
-R20
+R21
+R22
+R23
 !i122 0
-L0 41 0
+L0 42 0
 R10
 r1
 !s85 0
@@ -204,17 +230,17 @@ vTop_divisor
 R3
 R1
 !i10b 1
-!s100 gKRRP:LT[TmRG_T2G9hj13
+!s100 a@<nLPIeiUmZ=JCgb9VNz2
 R4
-Izm6DhHaj3EC2lM9MW`Hn00
+IzMzdk9aHXYEW7IeB4nhC:2
 R5
 S1
 R0
-R18
-R19
-R20
+R21
+R22
+R23
 !i122 0
-L0 3 36
+L0 3 37
 R10
 r1
 !s85 0
@@ -231,17 +257,17 @@ Xutilidades_verificacion
 R3
 R1
 !i10b 1
-!s100 zlGo:f2l58f26`7EH<jmi0
+!s100 E2IB?lDX_FEKYD>i<=:F>1
 R4
-I8GdM1LiKM>UIb0^nS]6LP1
-V8GdM1LiKM>UIb0^nS]6LP1
+IfjgPX2FF;A5LNoC?URXoJ0
+VfjgPX2FF;A5LNoC?URXoJ0
 S1
 R0
-R18
-R19
-R20
+R21
+R22
+R23
 !i122 0
-L0 110 0
+L0 111 0
 R10
 r1
 !s85 0
