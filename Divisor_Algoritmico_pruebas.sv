@@ -15,17 +15,17 @@
 //
 // Autores: Rafael Gadea
 // --------------------------------------------------------------------
-module Divisor_Algoritmico_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus) ; 
+module Divisor_Algoritmico_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus_ref) ; 
 
 Divisor_Algoritmico_pruebas_duv #(tamanyo) divisor_duv(
-  .CLK   (bus.reloj),     
-  .RSTa  (bus.reset),     
-  .Start (bus.Start),
-  .Num   (bus.Num_ref),
-  .Den   (bus.Den_ref),   
-  .Coc   (bus.Coc_ref),
-  .Res   (bus.Res_ref), 
-  .Done  (bus.Done_ref)    
+  .CLK   (bus_ref.reloj),     
+  .RSTa  (bus_ref.reset),     
+  .Start (bus_ref.Start),
+  .Num   (bus_ref.Num),
+  .Den   (bus_ref.Den),   
+  .Coc   (bus_ref.Coc_ref),
+  .Res   (bus_ref.Res_ref), 
+  .Done  (bus_ref.Done_ref)    
   );
 
 endmodule

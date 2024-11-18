@@ -13,7 +13,7 @@ module Top_divisor();
 //	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
 
     // Instanciacion del diseño de referencia (Duv_ref)
-    Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus(test_if));
+    Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus_ref(test_if));
 
     // Instanciacion del programa de estimulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));
@@ -35,7 +35,7 @@ module Top_divisor();
     initial begin
         $dumpfile("divisor.vcd");
         $dumpvars(1, Top_divisor.Duv.divisor_duv);
-       // $dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
+        //$dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
     end
 endmodule
 
@@ -51,13 +51,13 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
 
     logic Done_ref;
     logic signed [tamanyo-1:0] Coc_ref,Res_ref;
-    logic signed [tamanyo-1:0] Num_ref,Den_ref;
+
 
     // Clocking block para monitoreo 
     clocking md @(posedge reloj);
 		default input #1ns output #1ns;
         input  Num, Den, Coc, Res, Start, Done;
-        input  Num_ref, Den_ref, Coc_ref,Res_ref, Done_ref;	
+        input  Coc_ref,Res_ref, Done_ref;	
     endclocking: md;
 
     // Clocking block para generacion de estimulos 
@@ -66,10 +66,9 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input Coc, Res, Done;		
 		output Num, Den, Start;
 		input Coc_ref, Res_ref, Done_ref;
-		output Num_ref, Den_ref;
     endclocking: sd;
 
-	default clocking sd;
+	//default clocking sd;
 
     modport monitor (clocking md);
     modport test (clocking sd);
@@ -87,8 +86,8 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input     reloj,
         input     reset,
         input     Start,
-        input     Num_ref,
-        input     Den_ref,
+        input     Num,
+        input     Den,
         output    Done_ref,
         output    Coc_ref,
         output    Res_ref
@@ -162,19 +161,17 @@ package utilidades_verificacion;
 		endtask
 
 		task monitor_input_ref;    
-	    	logic start_control = 1;         // Variable para evitar duplicados
+	    	logic Done_control = 1;         // Variable para evitar duplicados
 	    	while (1) begin
 	        	@(mports.md);
 	        	if (mports.md.Done_ref) 
-		  			if (start_control) begin // Solo guardar si start_control es 1
-						pretarget_coc = mports.md.Coc_ref;
-						pretarget_res = mports.md.Res_ref;
-	            		cola_target_coc.push_front(pretarget_coc);
-	            		cola_target_res.push_front(pretarget_res);
-		    			start_control = 0;    // Cambia el estado para evitar duplicados
+		  			if (Done_control) begin // Solo guardar si Done_control es 1
+	            		cola_target_coc.push_front(mports.md.Coc_ref);
+	            		cola_target_res.push_front(mports.md.Res_ref);
+		    			Done_control = 0;    // Cambia el estado para evitar duplicados
 	            		end 
 				else begin
-                    start_control = 1;       // Reiniciar el flag cuando Start se desactiva
+                    Done_control = 1;       // Reiniciar el flag cuando Done se desactiva
                 end  
 			end   
 		endtask		
@@ -191,15 +188,16 @@ package utilidades_verificacion;
 					observado_Res = mports.md.Res;
 					assert_coc_passed = (observado_Coc == target_coc);
 					assert_res_passed = (observado_Res == target_res);
-					display_info(mports.md.Num, mports.md.Den, mports.md.Num_ref, mports.md.Den_ref, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
+					display_info(mports.md.Num, mports.md.Den, pretarget_coc, pretarget_res, target_coc, target_res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
 					assert (assert_coc_passed) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
 					assert (assert_res_passed) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
+					//@(negedge mports.md.Done);
 				end
 			end
 		endtask
 
 		task display_info(   //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
-			input int Num, Den, Num_ref, Den_ref, pretarget_coc, pretarget_res,
+			input int Num, Den, pretarget_coc, pretarget_res,
 			target_coc, target_res, observado_Coc, observado_Res,
 			input bit assert_coc_passed, assert_res_passed
 		);
@@ -208,8 +206,7 @@ package utilidades_verificacion;
 			string reset = "\033[0m";
 
 			$display("|                                                                              |");
-			$display("|Numeros asignados al duv -----> Num:  %-11d     , Den: %-11d      |", Num, Den);
-			$display("|Numeros asignados al duv_ref -> Num:  %-11d     , Den: %-11d      |", Num_ref, Den_ref);
+			$display("|Numeros asignados a las duv --> Num:  %-11d     , Den: %-11d      |", Num, Den);
 			$display("|                                                                              |");
 			$display("|Guardamos ideal en la cola ---> Cociente:  %-11d, Residuo:  %-11d |", pretarget_coc, pretarget_res);
 			$display("|Sacamos ideal de la cola -----> Cociente:  %-11d, Residuo:  %-11d |", target_coc, target_res);
@@ -228,21 +225,21 @@ package utilidades_verificacion;
 		// Covergroup para valores de Num	
 		covergroup valores_num @(monitorizar_ports.md);
 	  		zero: coverpoint monitorizar_ports.md.Num {
-	     		bins zero[] = {0}; }
+	     		bins zero[1] = {0}; }
 	 		rango_100: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[-100:100]}; }
+	     		bins rango[201] = {[-100:100]}; }
 	  		rango_100_a_1K: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[101:1000]}; }
+	     		bins rango[900] = {[101:1000]}; }
 	  		rango_neg_100_a_neg_1K: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[-1000:-101]}; }
+	     		bins rango[900] = {[-1000:-101]}; }
 	  		rango_1K_a_10K: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[1001:10000]}; }
+	     		bins rango[9000] = {[1001:10000]}; }
 	  		rango_10K_a_100K: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[10001:100000]}; }
+	     		bins rango[90000] = {[10001:100000]}; }
 	  		rango_100K_a_1M: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[100001:1000000]};}
+	     		bins rango[900000] = {[100001:1000000]};}
 	  		rango_neg_1K_a_neg_1M: coverpoint monitorizar_ports.md.Num {
-	     		bins rango[] = {[-1000000:-1001]}; }
+	     		bins rango[999000] = {[-1000000:-1001]}; }
 			rango_1M_a_max: coverpoint monitorizar_ports.md.Num {
 				bins rango[] = {[1000001:(2**tamanyo-1)]}; }
 			rango_neg_1M_a_min: coverpoint monitorizar_ports.md.Num {
@@ -314,8 +311,8 @@ package utilidades_verificacion;
 
         task muestrear;
             fork
-				sb.monitor_input;
-                //sb.monitor_input_ref;
+				//sb.monitor_input;
+                sb.monitor_input_ref;
                 sb.monitor_output;
             join_none
         endtask
@@ -331,9 +328,6 @@ package utilidades_verificacion;
 			for (int i = 0; i < 4; i++) begin
 				testar_ports.sd.Num <= num[i];
 				testar_ports.sd.Den <= den[i];
-
-				testar_ports.sd.Num_ref <=  num[i];
-                testar_ports.sd.Den_ref <=  den[i];
 
 				sign_num = (num[i] > 0) ? "Pos" : "Neg";
 				sign_den = (den[i] > 0) ? "Pos" : "Neg";	
@@ -367,9 +361,6 @@ package utilidades_verificacion;
                 testar_ports.sd.Num <= RandInst.num_rand;
                 testar_ports.sd.Den <= RandInst.den_rand;
 
-                testar_ports.sd.Num_ref <= RandInst.num_rand;
-                testar_ports.sd.Den_ref <= RandInst.den_rand;
-
                 valores_num.sample();                  // Muestreo para la cobertura num    
                 valores_den.sample();                  // Muestreo para la cobertura den    
 
@@ -378,11 +369,11 @@ package utilidades_verificacion;
 				@(testar_ports.sd);
     			#10 testar_ports.sd.Start <= 1'b0; // Baja `Start` para indicar solo un pulso
 
-                @(negedge testar_ports.sd.Done);
+				@(negedge testar_ports.sd.Done);
 				$display("|iteracion: %d                                                        |",  i);  
-            end
+			end
 			print_coverage();
-        endtask
+		endtask
 
     endclass
 	
@@ -392,17 +383,17 @@ endpackage
 program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface_if.monitor monitorizar);
 	utilidades_verificacion::environment Test = new(testar, monitorizar);
    
-    initial begin
+	initial begin
 		$display("+------------------------------------------------------------------------------+");
-        $display("|                             Iniciando pruebas...                             |");
+		$display("|                             Iniciando pruebas...                             |");
 		$display("+------------------------------------------------------------------------------+");
 		$display("                                                                                ");
 		Test.muestrear;
 		Test.prueba_combinaciones;
-        Test.prueba_random;
+		Test.prueba_random;
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                               Pruebas acabadas                               |");
 		$display("+------------------------------------------------------------------------------+");
-        $stop;
-    end
+		$stop;
+	end
 endprogram

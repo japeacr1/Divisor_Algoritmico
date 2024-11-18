@@ -1,7 +1,7 @@
 # do run.do
 # QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
-# Start time: 10:40:09 on Nov 18,2024
-# vlog divisor_parallel-1.sv Divisor_Algoritmico_Seg.sv Divisor_Algoritmico.sv Top_divisor.sv 
+# Start time: 14:14:46 on Nov 18,2024
+# vlog Divisor_Algoritmico_pruebas.sv Divisor_Algoritmico_Seg.sv Divisor_Algoritmico.sv Top_divisor.sv 
 # -- Compiling module Divisor_Algoritmico_pruebas
 # -- Compiling module Divisor_Algoritmico_pruebas_duv
 # -- Compiling module Divisor_Algoritmico_Seg
@@ -15,12 +15,12 @@
 # -- Importing package utilidades_verificacion
 # 
 # Top level modules:
-# 	Divisor_Algoritmico_Seg
+# 	Divisor_Algoritmico
 # 	Top_divisor
-# End time: 10:40:09 on Nov 18,2024, Elapsed time: 0:00:00
+# End time: 14:14:46 on Nov 18,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim Top_divisor 
-# Start time: 10:40:09 on Nov 18,2024
+# Start time: 14:14:46 on Nov 18,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2020.2 win64 Apr 19 2020
@@ -38,17 +38,17 @@
 # //
 # Loading sv_std.std
 # Loading work.Top_divisor(fast)
-# Loading work.Divisor_Algoritmico(fast)
+# Loading work.Divisor_Algoritmico_Seg(fast)
 # Loading work.Divisor_Algoritmico_pruebas(fast)
 # Loading work.Interface_if(fast)
 # Loading work.utilidades_verificacion(fast)
 # Loading work.estimulos(fast)
 # ** Warning: (vsim-8441) Clocking block output testar_ports.sd.Den is not legal in this
 # or another expression.
-#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 333
+#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 330
 # ** Warning: (vsim-8441) Clocking block output testar_ports.sd.Num is not legal in this
 # or another expression.
-#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 332
+#    Time: 0 ps  Iteration: 0  Region: /utilidades_verificacion File: Top_divisor.sv Line: 329
 # ** Warning: (vsim-8549) After dropping the illegal, ignore or invalid values, the values list associated with array bin 'zero' in Coverpoint 'zero' of Covergroup instance '\/utilidades_verificacion::environment::valores_den ' has converged to empty list. The bin will be taken out of coverage calculation.
 #    Time: 0 ps  Iteration: 0  Instance: /Top_divisor/estim1
 # ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'zero' of covergroup instance '\/utilidades_verificacion::environment::valores_den '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
@@ -63,151 +63,345 @@
 # |                                                                              |
 # |Combinacion Pos/Pos:     Num =        100, Den =         50                   |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  100             , Den: 50               |
-# |Numeros asignados al duv_ref -> Num:  100             , Den: 50               |
+# |Numeros asignados a las duv --> Num:  100             , Den: 50               |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  2          , Residuo:  0           |
-# |Sacamos ideal de la cola -----> Cociente:  2          , Residuo:  0           |
-# |Valores a comparar -----------> ideal_Coc: 2          , real_Coc: 2           |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 6553600     |
 # |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado     6553600
+#    Time: 355 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 355 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |                                                                              |
 # |Combinacion Pos/Neg:     Num =        100, Den =        -50                   |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  100             , Den: -50              |
-# |Numeros asignados al duv_ref -> Num:  100             , Den: -50              |
+# |Numeros asignados a las duv --> Num:  100             , Den: -50              |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  -2         , Residuo:  0           |
-# |Sacamos ideal de la cola -----> Cociente:  -2         , Residuo:  0           |
-# |Valores a comparar -----------> ideal_Coc: -2         , real_Coc: -2          |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  2          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 2          , real_Coc: -6553600    |
 # |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [32mPASSED[0m       |
+# ** Error: Cociente incorrecto: Esperado           2, Observado    -6553600
+#    Time: 715 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  100             , Den: -50              |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -6553600    |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado    -6553600
+#    Time: 725 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 725 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |                                                                              |
 # |Combinacion Neg/Pos:     Num =       -200, Den =        150                   |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  -200            , Den: 150              |
-# |Numeros asignados al duv_ref -> Num:  -200            , Den: 150              |
+# |Numeros asignados a las duv --> Num:  -200            , Den: 150              |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  -1         , Residuo:  -50         |
-# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  -50         |
-# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: -1          |
-# |Valores a comparar -----------> ideal_Res: -50        , real_Res: -50         |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  -2         , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: -2         , real_Coc: -13107200   |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [32mPASSED[0m       |
+# ** Error: Cociente incorrecto: Esperado          -2, Observado   -13107200
+#    Time: 1085 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -200            , Den: 150              |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -13107200   |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado   -13107200
+#    Time: 1095 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 1095 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |                                                                              |
 # |Combinacion Neg/Neg:     Num =       -200, Den =       -150                   |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  -200            , Den: -150             |
-# |Numeros asignados al duv_ref -> Num:  -200            , Den: -150             |
+# |Numeros asignados a las duv --> Num:  -200            , Den: -150             |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  1          , Residuo:  -50         |
-# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  -50         |
-# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1           |
-# |Valores a comparar -----------> ideal_Res: -50        , real_Res: -50         |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  -50         |
+# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: 13107200    |
+# |Valores a comparar -----------> ideal_Res: -50        , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado          -1, Observado    13107200
+#    Time: 1455 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado         -50, Observado           0
+#    Time: 1455 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -200            , Den: -150             |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 13107200    |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado    13107200
+#    Time: 1465 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 1465 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # +------------------------------------------------------------------------------+
 #                                                                                 
 # +------------------------------------------------------------------------------+
 # |                                Pruebas random                                |
 # +------------------------------------------------------------------------------+
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  46821           , Den: -2091237768      |
-# |Numeros asignados al duv_ref -> Num:  46821           , Den: -2091237768      |
+# |Numeros asignados a las duv --> Num:  46821           , Den: -2091237768      |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  46821       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  46821       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 46821      , real_Res: 46821       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  -50         |
+# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1226506240  |
+# |Valores a comparar -----------> ideal_Res: -50        , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           1, Observado  1226506240
+#    Time: 1825 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado         -50, Observado           0
+#    Time: 1825 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  46821           , Den: -2091237768      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 1226506240  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  1226506240
+#    Time: 1835 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 1835 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           0                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  74047           , Den: -1058239757      |
-# |Numeros asignados al duv_ref -> Num:  74047           , Den: -1058239757      |
+# |Numeros asignados a las duv --> Num:  74047           , Den: -1058239757      |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  74047       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  74047       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 74047      , real_Res: 74047       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  46821       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -557776896  |
+# |Valores a comparar -----------> ideal_Res: 46821      , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado  -557776896
+#    Time: 2195 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       46821, Observado           1
+#    Time: 2195 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  74047           , Den: -1058239757      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -557776896  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  -557776896
+#    Time: 2205 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           1
+#    Time: 2205 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           1                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  -42117          , Den: 883783264        |
-# |Numeros asignados al duv_ref -> Num:  -42117          , Den: 883783264        |
+# |Numeros asignados a las duv --> Num:  -42117          , Den: 883783264        |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -42117      |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -42117      |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: -42117     , real_Res: -42117      |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  74047       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 1534787584  |
+# |Valores a comparar -----------> ideal_Res: 74047      , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado  1534787584
+#    Time: 2565 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       74047, Observado           0
+#    Time: 2565 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -42117          , Den: 883783264        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 1534787584  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  1534787584
+#    Time: 2575 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 2575 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           2                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  61402           , Den: 282973688        |
-# |Numeros asignados al duv_ref -> Num:  61402           , Den: 282973688        |
+# |Numeros asignados a las duv --> Num:  61402           , Den: 282973688        |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  61402       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  61402       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 61402      , real_Res: 61402       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -42117      |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -270925824  |
+# |Valores a comparar -----------> ideal_Res: -42117     , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado  -270925824
+#    Time: 2935 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado      -42117, Observado           0
+#    Time: 2935 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  61402           , Den: 282973688        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -270925824  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  -270925824
+#    Time: 2945 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 2945 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           3                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  7909            , Den: 2059145816       |
-# |Numeros asignados al duv_ref -> Num:  7909            , Den: 2059145816       |
+# |Numeros asignados a las duv --> Num:  7909            , Den: 2059145816       |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  7909        |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  7909        |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 7909       , real_Res: 7909        |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  61402       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 518324224   |
+# |Valores a comparar -----------> ideal_Res: 61402      , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado   518324224
+#    Time: 3305 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       61402, Observado           0
+#    Time: 3305 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  7909            , Den: 2059145816       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 518324224   |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado   518324224
+#    Time: 3315 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 3315 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           4                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  85311           , Den: -1220462019      |
-# |Numeros asignados al duv_ref -> Num:  85311           , Den: -1220462019      |
+# |Numeros asignados a las duv --> Num:  85311           , Den: -1220462019      |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  85311       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  85311       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 85311      , real_Res: 85311       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  7909        |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -1295974400 |
+# |Valores a comparar -----------> ideal_Res: 7909       , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado -1295974400
+#    Time: 3675 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado        7909, Observado           1
+#    Time: 3675 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  85311           , Den: -1220462019      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -1295974400 |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado -1295974400
+#    Time: 3685 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           1
+#    Time: 3685 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           5                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  -21637          , Den: -995511991       |
-# |Numeros asignados al duv_ref -> Num:  -21637          , Den: -995511991       |
+# |Numeros asignados a las duv --> Num:  -21637          , Den: -995511991       |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -21637      |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -21637      |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: -21637     , real_Res: -21637      |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  85311       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 1418002432  |
+# |Valores a comparar -----------> ideal_Res: 85311      , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado  1418002432
+#    Time: 4045 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       85311, Observado           0
+#    Time: 4045 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -21637          , Den: -995511991       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 1418002432  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  1418002432
+#    Time: 4055 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 4055 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           6                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  17370           , Den: -56834422        |
-# |Numeros asignados al duv_ref -> Num:  17370           , Den: -56834422        |
+# |Numeros asignados a las duv --> Num:  17370           , Den: -56834422        |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  17370       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  17370       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 17370      , real_Res: 17370       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -21637      |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -1138360320 |
+# |Valores a comparar -----------> ideal_Res: -21637     , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado -1138360320
+#    Time: 4415 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado      -21637, Observado           0
+#    Time: 4415 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  17370           , Den: -56834422        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -1138360320 |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado -1138360320
+#    Time: 4425 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 4425 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           7                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  61157           , Den: 75180090         |
-# |Numeros asignados al duv_ref -> Num:  61157           , Den: 75180090         |
+# |Numeros asignados a las duv --> Num:  61157           , Den: 75180090         |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  61157       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  61157       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 61157      , real_Res: 61157       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  17370       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -286982144  |
+# |Valores a comparar -----------> ideal_Res: 17370      , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado  -286982144
+#    Time: 4785 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       17370, Observado           0
+#    Time: 4785 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  61157           , Den: 75180090         |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: -286982144  |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 0           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado  -286982144
+#    Time: 4795 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           0
+#    Time: 4795 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           8                                                        |
 # |                                                                              |
-# |Numeros asignados al duv -----> Num:  70975           , Den: 2139694484       |
-# |Numeros asignados al duv_ref -> Num:  70975           , Den: 2139694484       |
+# |Numeros asignados a las duv --> Num:  70975           , Den: 2139694484       |
 # |                                                                              |
-# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  70975       |
-# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  70975       |
-# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
-# |Valores a comparar -----------> ideal_Res: 70975      , real_Res: 70975       |
-# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  61157       |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 356450304   |
+# |Valores a comparar -----------> ideal_Res: 61157      , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           0, Observado   356450304
+#    Time: 5155 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado       61157, Observado           1
+#    Time: 5155 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  70975           , Den: 2139694484       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  0           |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  0           |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 356450304   |
+# |Valores a comparar -----------> ideal_Res: 0          , real_Res: 1           |
+# |Assert------------------------> Cociente: [31mFAILED[0m      , Residuo: [31mFAILED[0m       |
+# ** Error: Cociente incorrecto: Esperado           x, Observado   356450304
+#    Time: 5165 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 192
+# ** Error: Residuo incorrecto: Esperado           x, Observado           1
+#    Time: 5165 ns  Scope: utilidades_verificacion.Scoreboard.monitor_output File: Top_divisor.sv Line: 193
 # |iteracion:           9                                                        |
 # +------------------------------------------------------------------------------+
 # |                                Coverage Report                               |
@@ -228,7 +422,7 @@
 # +------------------------------------------------------------------------------+
 # |                               Pruebas acabadas                               |
 # +------------------------------------------------------------------------------+
-# ** Note: $stop    : Top_divisor.sv(406)
-#    Time: 9665 ns  Iteration: 2  Instance: /Top_divisor/estim1
-# Break at Top_divisor.sv line 406
-# Stopped at Top_divisor.sv line 406
+# ** Note: $stop    : Top_divisor.sv(397)
+#    Time: 5175 ns  Iteration: 2  Instance: /Top_divisor/estim1
+# Break at Top_divisor.sv line 397
+# Stopped at Top_divisor.sv line 397

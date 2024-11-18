@@ -47,6 +47,7 @@ genvar i;
 			end 
 		else 
             begin
+                aux[etapas-1] <= Start;
                 if (Start) begin
                      ACCU [etapas-1] <= '0;
                      SignNum[etapas-1] <= Num[tamanyo-1];
@@ -58,7 +59,7 @@ genvar i;
     end
     generate
         for (i=(etapas-2); i>-1; i=i-1)
-            begin
+            begin:generador
             always_ff @(posedge CLK or negedge RSTa)
                 begin
                 if (!RSTa)
@@ -78,7 +79,7 @@ genvar i;
                                 SignNum[i] <= SignNum[i+1];
                                 SignDen[i] <= SignDen[i+1];
                                 M[i] <= M[i+1];
-                                if (i%2 ==1'b1)
+                                if (i%2 ==1)
                                     {ACCU[i], Q[i]} <= {ACCU[i+1][tamanyo-2:0], Q[i+1], 1'b0};
                                 else
                                     begin

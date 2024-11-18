@@ -1,0 +1,22 @@
+$date
+	Mon Nov 18 14:18:54 2024
+$end
+$version
+	QuestaSim Version 2020.2
+$end
+$timescale
+	1ps
+$end
+
+$scope module Top_divisor $end
+
+$scope module Duv $end
+
+$scope module divisor_seg_duv $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+$end
