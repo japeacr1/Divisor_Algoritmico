@@ -1,0 +1,325 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico
+T_opt
+!s11d utilidades_verificacion C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 1 Interface_if 1 C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 
+!s110 1731941275
+VSCJRhcdmK`60__CI;_;Gk0
+04 23 4 work Top_divisor_algoritmico fast 0
+=1-7c10c924174f-673b539b-db-7034
+Z1 o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+Z3 OL;O;2020.2;71
+R0
+T_opt1
+!s110 1731941391
+Vzo=Z;J?FUXJc<i_ol=e3M1
+Z4 04 22 4 work Top_divisor_segmentado fast 0
+=1-7c10c924174f-673b540f-2df-4f08
+R1
+R2
+n@_opt1
+R3
+R0
+T_opt2
+!s110 1731942073
+VAz3_Gg?EFzdb`iSGRlMhf3
+R4
+=1-7c10c924174f-673b56b9-1a-c58
+R1
+R2
+n@_opt2
+R3
+vDivisor_Algoritmico
+Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z6 !s110 1731941274
+!i10b 1
+!s100 REhdFQ<>UP0;;8O3[Ol2S1
+Z7 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IZJYnZ4``L?>f6j>oQ]KQ80
+Z8 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z9 w1731934761
+Z10 8Divisor_Algoritmico.sv
+Z11 FDivisor_Algoritmico.sv
+!i122 2
+Z12 L0 1 14
+Z13 OL;L;2020.2;71
+r1
+!s85 0
+31
+Z14 !s108 1731941274.000000
+Z15 !s107 Top_divisor_algoritmico.sv|Divisor_Algoritmico.sv|Divisor_Algoritmico_pruebas.sv|
+Z16 !s90 Divisor_Algoritmico_pruebas.sv|Divisor_Algoritmico.sv|Top_divisor_algoritmico.sv|
+!i113 0
+Z17 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+n@divisor_@algoritmico
+vDivisor_Algoritmico_duv
+R5
+R6
+!i10b 1
+!s100 0fa2?MToY1JZ9W^?@Y2200
+R7
+I;F105zNda=m;3gb3B:1^Y3
+R8
+S1
+R0
+R9
+R10
+R11
+!i122 2
+Z18 L0 16 91
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R2
+n@divisor_@algoritmico_duv
+vDivisor_Algoritmico_pruebas
+R5
+R6
+!i10b 1
+!s100 9I<lUm5OGm_^o;D@`bJT83
+R7
+IS`1E2S<X5Ld6aeUFbO[2D0
+R8
+S1
+R0
+Z19 w1731934815
+Z20 8Divisor_Algoritmico_pruebas.sv
+Z21 FDivisor_Algoritmico_pruebas.sv
+!i122 2
+L0 18 14
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R2
+n@divisor_@algoritmico_pruebas
+vDivisor_Algoritmico_pruebas_duv
+R5
+R6
+!i10b 1
+!s100 hU3ifl05;^9V0de2C:oSo1
+R7
+IJ9M_^1nmiKEI8D13<0P5S3
+R8
+S1
+R0
+R19
+R20
+R21
+!i122 2
+L0 33 48
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R2
+n@divisor_@algoritmico_pruebas_duv
+vDivisor_Algoritmico_Seg
+R5
+Z22 !s110 1731942072
+!i10b 1
+!s100 nY4ePjiiM]GT=Xj2<cDoa3
+R7
+I1PEML;:XWLd_9U7E7OHSB2
+R8
+S1
+R0
+Z23 w1731940151
+Z24 8Divisor_Algoritmico_Seg.sv
+Z25 FDivisor_Algoritmico_Seg.sv
+!i122 4
+R12
+R13
+r1
+!s85 0
+31
+Z26 !s108 1731942072.000000
+Z27 !s107 Top_divisor_segmentado.sv|Divisor_Algoritmico_Seg.sv|
+Z28 !s90 Divisor_Algoritmico_Seg.sv|Top_divisor_segmentado.sv|
+!i113 0
+R17
+R2
+n@divisor_@algoritmico_@seg
+vDivisor_Algoritmico_seg_duv
+R5
+R22
+!i10b 1
+!s100 ]0n201bF=]]ZZ`?QiJ8;O3
+R7
+IBP@g<;7S1oVn?LXSFV>Yo0
+R8
+S1
+R0
+R23
+R24
+R25
+!i122 4
+R18
+R13
+r1
+!s85 0
+31
+R26
+R27
+R28
+!i113 0
+R17
+R2
+n@divisor_@algoritmico_seg_duv
+4estimulos
+R5
+R22
+!i10b 1
+!s100 0WhkW_BPF?4W`UNSgL]V61
+R7
+ImoaS@QVOCI>mWJ[NL?fnH3
+R8
+S1
+R0
+Z29 w1731942065
+Z30 8Top_divisor_segmentado.sv
+Z31 FTop_divisor_segmentado.sv
+!i122 4
+L0 74 0
+R13
+r1
+!s85 0
+31
+R26
+R27
+R28
+!i113 0
+R17
+R2
+YInterface_if
+R5
+R22
+!i10b 1
+!s100 oCIoBI9nlR=YC^fdP<l;K2
+R7
+IZzHJLTeI[`oAk2f`jJ3E81
+R8
+S1
+R0
+R29
+R30
+R31
+!i122 4
+L0 37 0
+R13
+r1
+!s85 0
+31
+R26
+R27
+R28
+!i113 0
+R17
+R2
+n@interface_if
+vTop_divisor_algoritmico
+R5
+R6
+!i10b 1
+!s100 Toaf^UJ2ITG]5NH>[51V_2
+R7
+IlFNl3NPD84BbC[>7;2DA51
+R8
+S1
+R0
+Z32 w1731940989
+Z33 8Top_divisor_algoritmico.sv
+Z34 FTop_divisor_algoritmico.sv
+!i122 2
+L0 3 37
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R2
+n@top_divisor_algoritmico
+vTop_divisor_segmentado
+R5
+R22
+!i10b 1
+!s100 EG58_h7Ba`3XO0lY4BS:C1
+R7
+IB2OSP;5U;<G65@I`8XAOP0
+R8
+S1
+R0
+R29
+R30
+R31
+!i122 4
+L0 2 34
+R13
+r1
+!s85 0
+31
+R26
+R27
+R28
+!i113 0
+R17
+R2
+n@top_divisor_segmentado
+Xutilidades_verificacion
+!s115 Interface_if
+R5
+R6
+!i10b 1
+!s100 2<MTAjoMnSof@6BAEfoFA0
+R7
+IL]N:gcSg8_6@5minTbHb02
+VL]N:gcSg8_6@5minTbHb02
+S1
+R0
+R32
+R33
+R34
+!i122 2
+L0 97 0
+R13
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 0
+R17
+R2

@@ -81,7 +81,8 @@ program estimulos #(parameter tamanyo = 32)(Interface_if test_if);
     // Colas para almacenar los valores esperados
     logic [tamanyo-1:0] target_Coc_cola[$];
     logic [tamanyo-1:0] target_Res_cola[$];
-
+    bit assert_coc_passed;
+    bit assert_res_passed;
 
 initial  begin
 	$display("Iniciando simulaciï¿½n...");
@@ -91,7 +92,7 @@ initial  begin
 	num_rand = $urandom_range(0, 2**(tamanyo-1));
 	den_rand = $urandom_range(1, 2**(tamanyo-1));
 	realizar_prueba(num_rand, den_rand);
-	
+    
 	// Caso 2: Numerador positivo y Denominador negativo
 	num_rand = $urandom_range(0, 2**(tamanyo-1));
 	den_rand = -$urandom_range(1, 2**(tamanyo-1));
@@ -149,15 +150,36 @@ endtask
         if ((target_Coc_cola.size()>0) && (target_Res_cola.size()>0)) begin
             target_Coc = target_Coc_cola.pop_back();
 	        target_Res = target_Res_cola.pop_back();
-
+            assert_coc_passed=(observado_Coc == target_Coc);
+            assert_res_passed=(observado_Res == target_Res);
+            display_info(num_rand, den_rand, pretarget_Coc, pretarget_Res, target_Coc, target_Res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
             // Aserciones para verificar resultados
-            assert (observado_Coc == target_Coc) 
+            assert (assert_coc_passed) 
                 else $error("Error en Coc: esperado %0d, recibido %0d", target_Coc, observado_Coc);
 
-            assert (observado_Res == target_Res) 
+            assert (assert_res_passed) 
                 else $error("Error en Res: esperado %0d, recibido %0d", target_Res, observado_Res);
+           
         end
     endtask
 
+    task display_info(   //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
+    input int Num, Den, pretarget_coc, pretarget_res,
+    target_coc, target_res, observado_Coc, observado_Res,
+    input bit assert_coc_passed, assert_res_passed);
+    automatic string green = "\033[32m";
+    automatic string red   = "\033[31m";
+    automatic string reset = "\033[0m";
+
+    $display("|                                                                              |");
+    $display("|Numeros asignados a las duv --> Num:  %-11d     , Den: %-11d      |", Num, Den);
+    $display("|                                                                              |");
+    $display("|Guardamos ideal en la cola ---> Cociente:  %-11d, Residuo:  %-11d |", pretarget_coc, pretarget_res);
+    $display("|Sacamos ideal de la cola -----> Cociente:  %-11d, Residuo:  %-11d |", target_coc, target_res);
+    $display("|Valores a comparar -----------> ideal_Coc: %-11d, real_Coc: %-11d |", target_coc, observado_Coc);
+    $display("|Valores a comparar -----------> ideal_Res: %-11d, real_Res: %-11d |", target_res, observado_Res);
+    $display("|Assert------------------------> Cociente: %s%s%s      , Residuo: %s%s%s       |", assert_coc_passed ? green : red, assert_coc_passed ? "PASSED" : "FAILED", reset,
+                                                                                                    assert_res_passed ? green : red, assert_res_passed ? "PASSED" : "FAILED", reset);
+endtask
 
 endprogram

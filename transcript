@@ -1,6 +1,6 @@
 # do run_seg.do
 # QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
-# Start time: 15:20:57 on Nov 18,2024
+# Start time: 16:01:12 on Nov 18,2024
 # vlog Divisor_Algoritmico_Seg.sv Top_divisor_segmentado.sv 
 # -- Compiling module Divisor_Algoritmico_Seg
 # -- Compiling module Divisor_Algoritmico_seg_duv
@@ -10,10 +10,10 @@
 # 
 # Top level modules:
 # 	Top_divisor_segmentado
-# End time: 15:20:57 on Nov 18,2024, Elapsed time: 0:00:00
+# End time: 16:01:12 on Nov 18,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim Top_divisor_segmentado 
-# Start time: 15:20:57 on Nov 18,2024
+# Start time: 16:01:12 on Nov 18,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2020.2 win64 Apr 19 2020
@@ -35,26 +35,42 @@
 # Loading work.estimulos(fast)
 # Iniciando simulaciï¿½n...
 # Testing num: 1801102263, den: 393546791
-# ** Error: Error en Coc: esperado 4, recibido 2746679296
-#    Time: 355 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 155
-# ** Error: Error en Res: esperado 226915099, recibido 27482
-#    Time: 355 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 158
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1801102263      , Den: 393546791        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  4          , Residuo:  226915099   |
+# |Sacamos ideal de la cola -----> Cociente:  4          , Residuo:  226915099   |
+# |Valores a comparar -----------> ideal_Coc: 4          , real_Coc: 4           |
+# |Valores a comparar -----------> ideal_Res: 226915099  , real_Res: 226915099   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
 # Testing num: 487438693, den: -1018815415
-# ** Error: Error en Coc: esperado 0, recibido 1184563200
-#    Time: 705 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 155
-# ** Error: Error en Res: esperado 487438693, recibido 7437
-#    Time: 705 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 158
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  487438693       , Den: -1018815415      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  487438693   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  487438693   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 487438693  , real_Res: 487438693   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
 # Testing num: -1359874246, den: 60124743
-# ** Error: Error en Coc: esperado 4294967274, recibido 4147773440
-#    Time: 1055 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 155
-# ** Error: Error en Res: esperado 4257837396, recibido 4294946546
-#    Time: 1055 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 158
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1359874246     , Den: 60124743         |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -22        , Residuo:  -37129900   |
+# |Sacamos ideal de la cola -----> Cociente:  -22        , Residuo:  -37129900   |
+# |Valores a comparar -----------> ideal_Coc: -22        , real_Coc: -22         |
+# |Valores a comparar -----------> ideal_Res: -37129900  , real_Res: -37129900   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
 # Testing num: -1003556722, den: -1989931823
-# ** Error: Error en Coc: esperado 0, recibido 259129344
-#    Time: 1405 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 155
-# ** Error: Error en Res: esperado 3291410574, recibido 4294951983
-#    Time: 1405 ns  Scope: Top_divisor_segmentado.estim1.scoreboard File: Top_divisor_segmentado.sv Line: 158
-# ** Note: $stop    : Top_divisor_segmentado.sv(110)
-#    Time: 1405 ns  Iteration: 1  Instance: /Top_divisor_segmentado/estim1
-# Break at Top_divisor_segmentado.sv line 110
-# Stopped at Top_divisor_segmentado.sv line 110
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1003556722     , Den: -1989931823      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -1003556722 |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -1003556722 |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -1003556722, real_Res: -1003556722 |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# ** Note: $stop    : Top_divisor_segmentado.sv(111)
+#    Time: 2685 ns  Iteration: 1  Instance: /Top_divisor_segmentado/estim1
+# Break at Top_divisor_segmentado.sv line 111
+# Stopped at Top_divisor_segmentado.sv line 111
