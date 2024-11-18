@@ -52,37 +52,24 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
     logic Done_ref;
     logic signed [tamanyo-1:0] Coc_ref,Res_ref;
     logic signed [tamanyo-1:0] Num_ref,Den_ref;
+
     // Clocking block para monitoreo 
     clocking md @(posedge reloj);
-        input #1ns Num;
-        input #1ns Den;
-        input #1ns Coc;
-        input #1ns Res;
-        input #1ns Start;
-        input #1ns Done;
-
-        input #1ns Num_ref;
-        input #1ns Den_ref;
-        input #1ns Done_ref;
-        input #1ns Coc_ref;
-        input #1ns Res_ref;	
+		default input #1ns output #1ns;
+        input  Num, Den, Coc, Res, Start, Done;
+        input  Num_ref, Den_ref, Coc_ref,Res_ref, Done_ref;	
     endclocking: md;
 
     // Clocking block para generacion de estimulos 
     clocking sd @(posedge reloj);
-        input #2ns Coc;
-        input #2ns Res;
-        input #2ns Done;
-        output #2ns Num;
-        output #2ns Den;
-        output #2ns Start;
-
-        input #2ns Done_ref;
-        input #2ns Coc_ref;
-        input #2ns Res_ref;	
-        output #2ns Num_ref;
-        output #2ns Den_ref;
+		default input #2ns output #2ns;
+        input Coc, Res, Done;		
+		output Num, Den, Start;
+		input Coc_ref, Res_ref, Done_ref;
+		output Num_ref, Den_ref;
     endclocking: sd;
+
+	default clocking sd;
 
     modport monitor (clocking md);
     modport test (clocking sd);
@@ -162,7 +149,7 @@ package utilidades_verificacion;
 				@(mports.md);
 				if (mports.md.Start) 
 					if (start_control) begin // Solo guardar si start_control es 1
-	            		pretarget_coc = mports.md.Num / mports.md.Den;
+	            		pretarget_coc = $signed(mports.md.Num) / $signed(mports.md.Den);
 	            		pretarget_res = mports.md.Num % mports.md.Den;
 	            		cola_target_coc.push_front(pretarget_coc);
 	            		cola_target_res.push_front(pretarget_res);
@@ -327,8 +314,8 @@ package utilidades_verificacion;
 
         task muestrear;
             fork
-				//sb.monitor_input;
-                sb.monitor_input_ref;
+				sb.monitor_input;
+                //sb.monitor_input_ref;
                 sb.monitor_output;
             join_none
         endtask
@@ -403,16 +390,16 @@ endpackage
 
 // Program para los estimulos//////////////////////////////////////////////////////////////////////////////
 program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface_if.monitor monitorizar);
-	utilidades_verificacion::environment casos = new(testar, monitorizar);
+	utilidades_verificacion::environment Test = new(testar, monitorizar);
    
     initial begin
 		$display("+------------------------------------------------------------------------------+");
         $display("|                             Iniciando pruebas...                             |");
 		$display("+------------------------------------------------------------------------------+");
 		$display("                                                                                ");
-		casos.muestrear;
-		casos.prueba_combinaciones;
-        casos.prueba_random;
+		Test.muestrear;
+		Test.prueba_combinaciones;
+        Test.prueba_random;
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                               Pruebas acabadas                               |");
 		$display("+------------------------------------------------------------------------------+");

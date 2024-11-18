@@ -10,17 +10,17 @@ cModel Technology
 Z0 dC:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico
 T_opt
 !s11d utilidades_verificacion C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 1 Interface_if 1 C:/Users/G513/Desktop/ISDIGIT/Divisor_Algoritmico/work 
-!s110 1731884858
-VF@lodAW3Td]4lVQdHT_EF2
+!s110 1731922810
+VWXjc@VH;PiDQcW[BQ^3Ig1
 04 11 4 work Top_divisor fast 0
-=1-7c10c924174f-673a7739-3ce-3134
+=1-7c10c924174f-673b0b7a-75-5ba4
 o-quiet -auto_acc_if_foreign -work work
 Z1 tCvgOpt 0
 n@_opt
 OL;O;2020.2;71
 vDivisor_Algoritmico
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1731884857
+Z3 !s110 1731922809
 !i10b 1
 !s100 REhdFQ<>UP0;;8O3[Ol2S1
 Z4 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -37,7 +37,7 @@ Z10 OL;L;2020.2;71
 r1
 !s85 0
 31
-Z11 !s108 1731884857.000000
+Z11 !s108 1731922809.000000
 Z12 !s107 Top_divisor.sv|Divisor_Algoritmico.sv|Divisor_Algoritmico_Seg.sv|divisor_parallel-1.sv|
 Z13 !s90 divisor_parallel-1.sv|Divisor_Algoritmico_Seg.sv|Divisor_Algoritmico.sv|Top_divisor.sv|
 !i113 0
@@ -176,20 +176,20 @@ R1
 n@divisor_@algoritmico_seg_duv
 4estimulos
 R2
-DXx4 work 23 utilidades_verificacion 0 22 QmJ7=Wb^4<[kldbHO]IEH1
+DXx4 work 23 utilidades_verificacion 0 22 BlbWF?1bLzJCZUJ<M`Lon2
 R3
 !i10b 1
-!s100 @[TOSO_aWhBf1GYAcSjN<0
+!s100 k@Z;_D[=0SU>KXKkK43K61
 R4
-I>FGH^T3o]f5YjVDGo3FG@2
+IA97K_^I@gzWn^C]8D@?T40
 R5
 S1
 R0
-Z21 w1731884841
+Z21 w1731922782
 Z22 8Top_divisor.sv
 Z23 FTop_divisor.sv
 !i122 0
-L0 405 0
+L0 392 0
 R10
 r1
 !s85 0
@@ -204,9 +204,9 @@ YInterface_if
 R2
 R3
 !i10b 1
-!s100 FAUW^z0`DJ4gL61_gnQ900
+!s100 cN6RKQT>jeHi51G4=<9OS2
 R4
-IES5g5SF?R3h@;:h@2JJWg0
+IQHQM]PY=D:g0QO2d[7SBP3
 R5
 S1
 R0
@@ -257,17 +257,17 @@ Xutilidades_verificacion
 R2
 R3
 !i10b 1
-!s100 D<MU>J]gRT0U=_1>Zia`N1
+!s100 J>iSo?Qo27fF?e3_H]E[`3
 R4
-IQmJ7=Wb^4<[kldbHO]IEH1
-VQmJ7=Wb^4<[kldbHO]IEH1
+IBlbWF?1bLzJCZUJ<M`Lon2
+VBlbWF?1bLzJCZUJ<M`Lon2
 S1
 R0
 R21
 R22
 R23
 !i122 0
-L0 112 0
+L0 99 0
 R10
 r1
 !s85 0
