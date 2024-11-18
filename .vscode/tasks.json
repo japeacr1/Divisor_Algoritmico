@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compilar y Simular",
+            "label": "Compilar y Simular ",
             "type": "shell",
             "command": "vsim -c -do \"run.do\"",
             "group": {
@@ -21,7 +21,21 @@
                 "clear": true,
                 "close": true
             },
-            "dependsOn": "Limpiar Directorio de Trabajo"
+        },
+        {
+            "label": "Compilar y Simular el segmentado ",
+            "type": "shell",
+            "command": "vsim -c -do \"run_seg.do\"",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Compila y simula el diseño usando Questasim",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            
         },
         {
             "label": "Limpiar Directorio de Trabajo",

@@ -10,7 +10,7 @@ module Top_divisor();
 
     // Instanciacion del diseño (DUV)
     Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
-//	Divisor_Algoritmico_Seg #(tamanyo) Duv (.bus(test_if));
+
 
     // Instanciacion del diseño de referencia (Duv_ref)
     Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus_ref(test_if));
@@ -35,7 +35,6 @@ module Top_divisor();
     initial begin
         $dumpfile("divisor.vcd");
         $dumpvars(1, Top_divisor.Duv.divisor_duv);
-        //$dumpvars(1, Top_divisor.Duv.divisor_seg_duv);
     end
 endmodule
 
