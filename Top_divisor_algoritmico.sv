@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Top_divisor();
+module Top_divisor_algoritmico();
     parameter tamanyo = 32;
     logic CLK;
     logic RSTa;
@@ -34,7 +34,7 @@ module Top_divisor();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-        $dumpvars(1, Top_divisor.Duv.divisor_duv);
+        $dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv);
     end
 endmodule
 
