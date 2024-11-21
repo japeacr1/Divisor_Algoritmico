@@ -25,7 +25,7 @@ output logic [tamanyo-1:0] Coc,
 output logic [tamanyo-1:0] Res,
 output Done);
 
-localparam etapas = 2*tamanyo + 1;
+localparam etapas = 2*tamanyo+1;
 
 logic [etapas-1:0][tamanyo-1:0] ACCU;
 logic [etapas-1:0][tamanyo-1:0] M;

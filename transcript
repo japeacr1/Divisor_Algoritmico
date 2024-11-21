@@ -1,6 +1,6 @@
 # do run_seg.do
 # QuestaSim-64 vlog 2020.2 Compiler 2020.04 Apr 19 2020
-# Start time: 16:01:12 on Nov 18,2024
+# Start time: 12:25:44 on Nov 21,2024
 # vlog Divisor_Algoritmico_Seg.sv Top_divisor_segmentado.sv 
 # -- Compiling module Divisor_Algoritmico_Seg
 # -- Compiling module Divisor_Algoritmico_seg_duv
@@ -10,10 +10,10 @@
 # 
 # Top level modules:
 # 	Top_divisor_segmentado
-# End time: 16:01:12 on Nov 18,2024, Elapsed time: 0:00:00
+# End time: 12:25:44 on Nov 21,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim Top_divisor_segmentado 
-# Start time: 16:01:12 on Nov 18,2024
+# Start time: 12:25:44 on Nov 21,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2020.2 win64 Apr 19 2020
@@ -70,7 +70,331 @@
 # |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
 # |Valores a comparar -----------> ideal_Res: -1003556722, real_Res: -1003556722 |
 # |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
-# ** Note: $stop    : Top_divisor_segmentado.sv(111)
-#    Time: 2685 ns  Iteration: 1  Instance: /Top_divisor_segmentado/estim1
-# Break at Top_divisor_segmentado.sv line 111
-# Stopped at Top_divisor_segmentado.sv line 111
+# Testing num: 2050442342, den: 864441659
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  2050442342      , Den: 864441659        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  2          , Residuo:  321559024   |
+# |Sacamos ideal de la cola -----> Cociente:  2          , Residuo:  321559024   |
+# |Valores a comparar -----------> ideal_Coc: 2          , real_Coc: 2           |
+# |Valores a comparar -----------> ideal_Res: 321559024  , real_Res: 321559024   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 1190730858, den: -1797640629
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1190730858      , Den: -1797640629      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  1190730858  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  1190730858  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 1190730858 , real_Res: 1190730858  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1628895855, den: 1385896535
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1628895855     , Den: 1385896535       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -1         , Residuo:  -242999320  |
+# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  -242999320  |
+# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: -1          |
+# |Valores a comparar -----------> ideal_Res: -242999320 , real_Res: -242999320  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -471414324, den: -283998165
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -471414324      , Den: -283998165       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  1          , Residuo:  -187416159  |
+# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  -187416159  |
+# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1           |
+# |Valores a comparar -----------> ideal_Res: -187416159 , real_Res: -187416159  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 345981102, den: 955351422
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  345981102       , Den: 955351422        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  345981102   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  345981102   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 345981102  , real_Res: 345981102   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 852277211, den: -653200902
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  852277211       , Den: -653200902       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -1         , Residuo:  199076309   |
+# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  199076309   |
+# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: -1          |
+# |Valores a comparar -----------> ideal_Res: 199076309  , real_Res: 199076309   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1422755555, den: 637567777
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1422755555     , Den: 637567777        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -2         , Residuo:  -147620001  |
+# |Sacamos ideal de la cola -----> Cociente:  -2         , Residuo:  -147620001  |
+# |Valores a comparar -----------> ideal_Coc: -2         , real_Coc: -2          |
+# |Valores a comparar -----------> ideal_Res: -147620001 , real_Res: -147620001  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -182085093, den: -2113566470
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -182085093      , Den: -2113566470      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -182085093  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -182085093  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -182085093 , real_Res: -182085093  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 926387493, den: 1640439530
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  926387493       , Den: 1640439530       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  926387493   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  926387493   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 926387493  , real_Res: 926387493   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 823141468, den: -1513266571
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  823141468       , Den: -1513266571      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  823141468   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  823141468   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 823141468  , real_Res: 823141468   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -980492631, den: 469911948
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -980492631      , Den: 469911948        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -2         , Residuo:  -40668735   |
+# |Sacamos ideal de la cola -----> Cociente:  -2         , Residuo:  -40668735   |
+# |Valores a comparar -----------> ideal_Coc: -2         , real_Coc: -2          |
+# |Valores a comparar -----------> ideal_Res: -40668735  , real_Res: -40668735   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -725602646, den: -1172542410
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -725602646      , Den: -1172542410      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -725602646  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -725602646  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -725602646 , real_Res: -725602646  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 325874361, den: 1897247041
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  325874361       , Den: 1897247041       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  325874361   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  325874361   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 325874361  , real_Res: 325874361   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 295425919, den: -1508425231
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  295425919       , Den: -1508425231      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  295425919   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  295425919   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 295425919  , real_Res: 295425919   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1311230164, den: 1249700239
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1311230164     , Den: 1249700239       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -1         , Residuo:  -61529925   |
+# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  -61529925   |
+# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: -1          |
+# |Valores a comparar -----------> ideal_Res: -61529925  , real_Res: -61529925   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -905340096, den: -483072408
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -905340096      , Den: -483072408       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  1          , Residuo:  -422267688  |
+# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  -422267688  |
+# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1           |
+# |Valores a comparar -----------> ideal_Res: -422267688 , real_Res: -422267688  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 2027000101, den: 1165220808
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  2027000101      , Den: 1165220808       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  1          , Residuo:  861779293   |
+# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  861779293   |
+# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1           |
+# |Valores a comparar -----------> ideal_Res: 861779293  , real_Res: 861779293   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 1707831895, den: -868219218
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1707831895      , Den: -868219218       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -1         , Residuo:  839612677   |
+# |Sacamos ideal de la cola -----> Cociente:  -1         , Residuo:  839612677   |
+# |Valores a comparar -----------> ideal_Coc: -1         , real_Coc: -1          |
+# |Valores a comparar -----------> ideal_Res: 839612677  , real_Res: 839612677   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -678611249, den: 2132860452
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -678611249      , Den: 2132860452       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -678611249  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -678611249  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -678611249 , real_Res: -678611249  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1090704212, den: -513868212
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1090704212     , Den: -513868212       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  2          , Residuo:  -62967788   |
+# |Sacamos ideal de la cola -----> Cociente:  2          , Residuo:  -62967788   |
+# |Valores a comparar -----------> ideal_Coc: 2          , real_Coc: 2           |
+# |Valores a comparar -----------> ideal_Res: -62967788  , real_Res: -62967788   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 488527450, den: 1672354535
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  488527450       , Den: 1672354535       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  488527450   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  488527450   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 488527450  , real_Res: 488527450   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 668399093, den: -1909863014
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  668399093       , Den: -1909863014      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  668399093   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  668399093   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 668399093  , real_Res: 668399093   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -33166826, den: 793991952
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -33166826       , Den: 793991952        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -33166826   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -33166826   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -33166826  , real_Res: -33166826   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -252449007, den: -2040308805
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -252449007      , Den: -2040308805      |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -252449007  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -252449007  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -252449007 , real_Res: -252449007  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 148004297, den: 149885132
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  148004297       , Den: 149885132        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  148004297   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  148004297   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 148004297  , real_Res: 148004297   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 1067369287, den: -27491016
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1067369287      , Den: -27491016        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -38        , Residuo:  22710679    |
+# |Sacamos ideal de la cola -----> Cociente:  -38        , Residuo:  22710679    |
+# |Valores a comparar -----------> ideal_Coc: -38        , real_Coc: -38         |
+# |Valores a comparar -----------> ideal_Res: 22710679   , real_Res: 22710679    |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1637930481, den: 154835938
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1637930481     , Den: 154835938        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -10        , Residuo:  -89571101   |
+# |Sacamos ideal de la cola -----> Cociente:  -10        , Residuo:  -89571101   |
+# |Valores a comparar -----------> ideal_Coc: -10        , real_Coc: -10         |
+# |Valores a comparar -----------> ideal_Res: -89571101  , real_Res: -89571101   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -563762052, den: -942265137
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -563762052      , Den: -942265137       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -563762052  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -563762052  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -563762052 , real_Res: -563762052  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 1492394613, den: 726485278
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1492394613      , Den: 726485278        |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  2          , Residuo:  39424057    |
+# |Sacamos ideal de la cola -----> Cociente:  2          , Residuo:  39424057    |
+# |Valores a comparar -----------> ideal_Coc: 2          , real_Coc: 2           |
+# |Valores a comparar -----------> ideal_Res: 39424057   , real_Res: 39424057    |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 2089829842, den: -957671191
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  2089829842      , Den: -957671191       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  -2         , Residuo:  174487460   |
+# |Sacamos ideal de la cola -----> Cociente:  -2         , Residuo:  174487460   |
+# |Valores a comparar -----------> ideal_Coc: -2         , real_Coc: -2          |
+# |Valores a comparar -----------> ideal_Res: 174487460  , real_Res: 174487460   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1338052314, den: 1833046849
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1338052314     , Den: 1833046849       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -1338052314 |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -1338052314 |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -1338052314, real_Res: -1338052314 |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -1243990709, den: -970863250
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -1243990709     , Den: -970863250       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  1          , Residuo:  -273127459  |
+# |Sacamos ideal de la cola -----> Cociente:  1          , Residuo:  -273127459  |
+# |Valores a comparar -----------> ideal_Coc: 1          , real_Coc: 1           |
+# |Valores a comparar -----------> ideal_Res: -273127459 , real_Res: -273127459  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 1027841906, den: 1863454881
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  1027841906      , Den: 1863454881       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  1027841906  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  1027841906  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 1027841906 , real_Res: 1027841906  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: 336231766, den: -990125086
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  336231766       , Den: -990125086       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  336231766   |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  336231766   |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: 336231766  , real_Res: 336231766   |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -578331603, den: 1086791646
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -578331603      , Den: 1086791646       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -578331603  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -578331603  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -578331603 , real_Res: -578331603  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# Testing num: -354394521, den: -944164997
+# |                                                                              |
+# |Numeros asignados a las duv --> Num:  -354394521      , Den: -944164997       |
+# |                                                                              |
+# |Guardamos ideal en la cola ---> Cociente:  0          , Residuo:  -354394521  |
+# |Sacamos ideal de la cola -----> Cociente:  0          , Residuo:  -354394521  |
+# |Valores a comparar -----------> ideal_Coc: 0          , real_Coc: 0           |
+# |Valores a comparar -----------> ideal_Res: -354394521 , real_Res: -354394521  |
+# |Assert------------------------> Cociente: [32mPASSED[0m      , Residuo: [32mPASSED[0m       |
+# ** Note: $stop    : Top_divisor_segmentado.sv(112)
+#    Time: 26805 ns  Iteration: 1  Instance: /Top_divisor_segmentado/estim1
+# Break at Top_divisor_segmentado.sv line 112
+# Stopped at Top_divisor_segmentado.sv line 112

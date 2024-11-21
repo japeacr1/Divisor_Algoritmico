@@ -67,27 +67,28 @@ interface  Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit re
       output    Done,
       output    Coc,
       output    Res
-		);
+	);
+
 endinterface
 
 // Programa para la instanciaciï¿½n de mï¿½dulos
 program estimulos #(parameter tamanyo = 32)(Interface_if test_if);
 
-    logic [tamanyo-1:0] num_rand, den_rand;
-    logic [tamanyo-1:0] observado_Coc, observado_Res;
-    logic [tamanyo-1:0] target_Coc, target_Res;
-    logic [tamanyo-1:0] pretarget_Coc, pretarget_Res;
+    logic signed [tamanyo-1:0] num_rand, den_rand;
+    logic signed [tamanyo-1:0] target_Coc, target_Res;
+    logic signed [tamanyo-1:0] pretarget_Coc, pretarget_Res;
+    logic signed [tamanyo-1:0] observado_Coc, observado_Res;
 
     // Colas para almacenar los valores esperados
-    logic [tamanyo-1:0] target_Coc_cola[$];
-    logic [tamanyo-1:0] target_Res_cola[$];
+    logic signed [tamanyo-1:0] target_Coc_cola[$];
+    logic signed [tamanyo-1:0] target_Res_cola[$];
     bit assert_coc_passed;
     bit assert_res_passed;
 
 initial  begin
 	$display("Iniciando simulaciï¿½n...");
 	test_if.Start = 1'b0;
-	repeat (1) begin
+	repeat (10) begin
 	// Caso 1: Numerador y Denominador positivos
 	num_rand = $urandom_range(0, 2**(tamanyo-1));
 	den_rand = $urandom_range(1, 2**(tamanyo-1));
@@ -128,40 +129,41 @@ task realizar_prueba(input logic signed [tamanyo-1:0] num, input logic signed [t
     @(posedge test_if.reloj);
     test_if.sd.Start <= 1'b0;
 
-    // Esperar un ciclo de reloj adicional
-	@(posedge test_if.reloj);
+	// Esperar a que Done se active
+   	@(posedge test_if.md.Done);
+
+    //pretarget_Coc = test_if.md.Coc_ref;
+    //pretarget_Res = test_if.md.Res_ref;
 
 	// Almacenar valores esperados al frente de la cola
 	target_Coc_cola.push_front(pretarget_Coc);
 	target_Res_cola.push_front(pretarget_Res);
-
-	// Esperar a que Done se active
-   	@(posedge test_if.md.Done);
-
-    observado_Coc = test_if.md.Coc;
-    observado_Res = test_if.md.Res;
-
+    
+    // Llamar a la tarea scoreboard
 	scoreboard();
 endtask
 
-    // Tarea para comparar resultados
-    task scoreboard();
+// Tarea para comparar resultados
+task scoreboard();
 
-        if ((target_Coc_cola.size()>0) && (target_Res_cola.size()>0)) begin
-            target_Coc = target_Coc_cola.pop_back();
-	        target_Res = target_Res_cola.pop_back();
-            assert_coc_passed=(observado_Coc == target_Coc);
-            assert_res_passed=(observado_Res == target_Res);
-            display_info(num_rand, den_rand, pretarget_Coc, pretarget_Res, target_Coc, target_Res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
-            // Aserciones para verificar resultados
-            assert (assert_coc_passed) 
-                else $error("Error en Coc: esperado %0d, recibido %0d", target_Coc, observado_Coc);
+    if ((target_Coc_cola.size()>0) && (target_Res_cola.size()>0)) begin
+        target_Coc = target_Coc_cola.pop_back();
+	    target_Res = target_Res_cola.pop_back();
+        
+        observado_Coc = test_if.md.Coc;
+        observado_Res = test_if.md.Res;
 
-            assert (assert_res_passed) 
-                else $error("Error en Res: esperado %0d, recibido %0d", target_Res, observado_Res);
-           
-        end
-    endtask
+        assert_coc_passed=(observado_Coc == target_Coc);
+        assert_res_passed=(observado_Res == target_Res);
+
+        display_info(num_rand, den_rand, pretarget_Coc, pretarget_Res, target_Coc, target_Res, observado_Coc, observado_Res, assert_coc_passed, assert_res_passed);
+        // Aserciones para verificar resultados
+        assert (assert_coc_passed) 
+            else $error("Error en Coc: esperado %0d, recibido %0d", target_Coc, observado_Coc);
+        assert (assert_res_passed) 
+            else $error("Error en Res: esperado %0d, recibido %0d", target_Res, observado_Res);   
+    end
+endtask
 
     task display_info(   //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
     input int Num, Den, pretarget_coc, pretarget_res,
