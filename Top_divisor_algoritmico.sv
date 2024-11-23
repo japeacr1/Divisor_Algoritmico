@@ -8,11 +8,11 @@ module Top_divisor_algoritmico();
     // Instanciacion de la interfaz
     Interface_if #(tamanyo) test_if(.reloj(CLK), .reset(RSTa));
 
-    // Instanciacion del diseño (DUV)
-    Divisor_Algoritmico #(tamanyo) Duv (.bus(test_if));
+    // Instanciacion del diseÃ±o (DUV)
+    Top_Duv #(tamanyo) Duv (.bus(test_if));
 
-    // Instanciacion del diseño de referencia (Duv_ref)
-    Divisor_Algoritmico_pruebas #(tamanyo) Duv_ref (.bus_ref(test_if));
+    // Instanciacion del diseÃ±o de referencia (Duv_ref)
+    Top_pruebas #(tamanyo) Duv_ref (.bus_ref(test_if));
 
     // Instanciacion del programa de estimulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));
@@ -33,11 +33,11 @@ module Top_divisor_algoritmico();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-        $dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv.Num);
-		$dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv.Den);
-		$dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv.Coc);
-		$dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv.Res);
-		$dumpvars(1, Top_divisor_algoritmico.Duv.divisor_duv.Done);
+        $dumpvars(1, Top_divisor_algoritmico.Duv.divisor.Num);
+	$dumpvars(1, Top_divisor_algoritmico.Duv.divisor.Den);
+	$dumpvars(1, Top_divisor_algoritmico.Duv.divisor.Coc);
+	$dumpvars(1, Top_divisor_algoritmico.Duv.divisor.Res);
+	$dumpvars(1, Top_divisor_algoritmico.Duv.divisor.Done);
     end
 endmodule
 
@@ -55,17 +55,17 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
 
     // Clocking block para monitoreo 
     clocking md @(posedge reloj);
-		default input #1ns output #1ns;
+	default input #1ns output #1ns;
         input   Start,Num, Den, Coc, Res, Done;
         input  Coc_ref,Res_ref, Done_ref;	
     endclocking: md;
 
     // Clocking block para generacion de estimulos 
     clocking sd @(posedge reloj);
-		default input #2ns output #2ns;
+	default input #2ns output #2ns;
         input Coc, Res, Done;	
-		input  Coc_ref, Res_ref, Done_ref;	
-		output Num, Den, Start;
+	input  Coc_ref, Res_ref, Done_ref;	
+	output Num, Den, Start;
     endclocking: sd;
 
 	default clocking sd;
@@ -80,7 +80,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input     Den,
         output    Coc,
         output    Res,
-		output    Done
+	output    Done
     );
     modport Duv_ref (
         input     reloj,
@@ -90,7 +90,7 @@ interface Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit res
         input     Den,
         output    Coc_ref,
         output    Res_ref,
-		output    Done_ref
+	output    Done_ref
 	);	
 endinterface
 
@@ -104,11 +104,11 @@ package utilidades_verificacion;
         randc logic signed [tamanyo-1:0] den_rand;
 
         constraint den_valido { den_rand != 0; }
-		constraint num_pos { num_rand inside {[0 : 2147483647]};  }
-		constraint num_neg { num_rand inside {[-2147483647 : -1]};}
-		constraint den_pos { den_rand inside {[1 : 2147483647]};  }
-		constraint den_neg { den_rand inside {[-2147483647 : -1]};}
-	endclass
+	constraint num_pos { num_rand inside {[0 : 2147483647]};  }
+	constraint num_neg { num_rand inside {[-2147483647 : -1]};}
+	constraint den_pos { den_rand inside {[1 : 2147483647]};  }
+	constraint den_neg { den_rand inside {[-2147483647 : -1]};}
+     endclass
 
 	class Scoreboard;
 		logic signed[tamanyo-1:0] cola_target_coc [$];
@@ -246,7 +246,7 @@ package utilidades_verificacion;
 			RandInst.den_pos.constraint_mode(1);
 			RandInst.den_neg.constraint_mode(0);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
+			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
 
 			testar_ports.sd.Num <= RandInst.num_rand;
 			testar_ports.sd.Den <= RandInst.den_rand;
@@ -270,7 +270,7 @@ package utilidades_verificacion;
 			RandInst.den_pos.constraint_mode(1);
 			RandInst.den_neg.constraint_mode(0);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
+			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
 
 			testar_ports.sd.Num <= RandInst.num_rand;
 			testar_ports.sd.Den <= RandInst.den_rand;
@@ -294,7 +294,7 @@ package utilidades_verificacion;
 			RandInst.den_pos.constraint_mode(0);
 			RandInst.den_neg.constraint_mode(1);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
+			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
 
 			testar_ports.sd.Num <= RandInst.num_rand;
 			testar_ports.sd.Den <= RandInst.den_rand;
@@ -318,7 +318,7 @@ package utilidades_verificacion;
 			RandInst.den_pos.constraint_mode(0);
 			RandInst.den_neg.constraint_mode(1);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
+			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
 
 			testar_ports.sd.Num <= RandInst.num_rand;
 			testar_ports.sd.Den <= RandInst.den_rand;
