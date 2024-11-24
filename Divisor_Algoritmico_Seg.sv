@@ -1,14 +1,14 @@
-module Divisor_Algoritmico_Seg #(parameter tamanyo=32)(Interface_if.Duv bus) ; 
+module Divisor_Algoritmico_Seg #(parameter tamanyo=32)(Interface_if.Duv_seg bus_seg) ; 
 
 Divisor_Algoritmico_seg_duv #(tamanyo) divisor_seg_duv(
-  .CLK   (bus.reloj),     
-  .RSTa  (bus.reset),     
-  .Start (bus.Start),
-  .Num   (bus.Num),
-  .Den   (bus.Den),   
-  .Coc   (bus.Coc),
-  .Res   (bus.Res), 
-  .Done  (bus.Done)    
+  .CLK   (bus_seg.reloj),     
+  .RSTa  (bus_seg.reset),     
+  .Start (bus_seg.Start),
+  .Num   (bus_seg.Num),
+  .Den   (bus_seg.Den),   
+  .Coc   (bus_seg.Coc),
+  .Res   (bus_seg.Res), 
+  .Done  (bus_seg.Done)    
   );
 
 endmodule

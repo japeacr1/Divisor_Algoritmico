@@ -8,7 +8,7 @@ module Top_divisor_segmentado();
     Interface_if #(tamanyo) test_if(.reloj(CLK),.reset(RSTa));
 
     // InstanciaciÃ¯Â¿Â½n del diseÃ¯Â¿Â½o (DUT)
-    Divisor_Algoritmico_Seg Duv (.bus(test_if));
+    Divisor_Algoritmico_Seg Duv_seg (.bus_seg(test_if));
 
     // InstanciaciÃ¯Â¿Â½n del program
     estimulos #(tamanyo) estim1(test_if);
@@ -29,7 +29,7 @@ module Top_divisor_segmentado();
     // Volcado de valores para el visualizador
     initial begin
         $dumpfile("divisor.vcd");
-        $dumpvars(1, Top_divisor_segmentado.Duv.divisor_seg_duv);
+        $dumpvars(1, Top_divisor_segmentado.Duv_seg.divisor_seg_duv);
     end
 
 endmodule
@@ -58,7 +58,7 @@ interface  Interface_if #(parameter tamanyo = 32) (input bit reloj, input bit re
  
   modport monitor (clocking md);
   modport test (clocking sd);
-  modport Duv (
+  modport Duv_seg (
       input     reloj,
       input     reset,
       input     Start,
@@ -90,28 +90,28 @@ initial  begin
 	// Caso 1: Numerador y Denominador positivos
 	num_rand = $urandom_range(0, 2**(tamanyo-1));
 	den_rand = $urandom_range(1, 2**(tamanyo-1));
-	Introducimos(num_rand, den_rand);
+	In(num_rand, den_rand);
     
 	// Caso 2: Numerador positivo y Denominador negativo
 	num_rand = $urandom_range(0, 2**(tamanyo-1));
 	den_rand = -$urandom_range(1, 2**(tamanyo-1));
-	Introducimos(num_rand, den_rand);
+	In(num_rand, den_rand);
 	
 	// Caso 3: Numerador negativo y Denominador positivo
 	num_rand = -$urandom_range(0, 2**(tamanyo-1));
 	den_rand = $urandom_range(1, 2**(tamanyo-1));
-	Introducimos(num_rand, den_rand);
+	In(num_rand, den_rand);
 	
 	// Caso 4: Numerador y Denominador negativos
 	num_rand = -$urandom_range(0, 2**(tamanyo-1));
 	den_rand = -$urandom_range(1, 2**(tamanyo-1));
-	Introducimos(num_rand, den_rand);
-	repeat(4) Sacamos();
+	In(num_rand, den_rand);
+	repeat(4) out();
         end
 	$stop;
 end
 
-task Introducimos(input logic signed [tamanyo-1:0] num, input logic signed [tamanyo-1:0] den);
+task In(input logic signed [tamanyo-1:0] num, input logic signed [tamanyo-1:0] den);
 	   
 	$display("Testing num: %0d, den: %0d", num, den);
 
@@ -134,10 +134,9 @@ task Introducimos(input logic signed [tamanyo-1:0] num, input logic signed [tama
 
 
 endtask
-task Sacamos();
+task out();
 	// Esperar a que Done se active
    	@(posedge test_if.md.Done);
-
     // Llamar a la tarea scoreboard
 	scoreboard();
 endtask

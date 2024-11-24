@@ -12,7 +12,7 @@ module Top_divisor_algoritmico();
     Top_Duv #(tamanyo) Duv (.bus(test_if));
 
     // Instanciacion del diseÃ±o de referencia (Duv_ref)
-    Top_pruebas #(tamanyo) Duv_ref (.bus_ref(test_if));
+    Top_Duv_ref #(tamanyo) Duv_ref (.bus_ref(test_if));
 
     // Instanciacion del programa de estimulos
     estimulos #(tamanyo) estim1(.testar(test_if),.monitorizar(test_if));

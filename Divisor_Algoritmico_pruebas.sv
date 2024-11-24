@@ -15,7 +15,7 @@
 //
 // Autores: Rafael Gadea
 // --------------------------------------------------------------------
-module Top_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus_ref) ; 
+module Top_Duv_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus_ref) ; 
 
 Divisor_Algoritmico_pruebas #(tamanyo) divisor(
   .CLK   (bus_ref.reloj),     
