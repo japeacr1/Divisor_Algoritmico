@@ -1,6 +1,6 @@
-module Divisor_Algoritmico #(parameter tamanyo=32)(Interface_if.Duv bus) ; 
+module Top_Duv #(parameter tamanyo=32)(Interface_if.Duv bus) ; 
 
-Divisor_Algoritmico_duv #(tamanyo) divisor_duv(
+Divisor_Algoritmico #(tamanyo) divisor(
   .CLK   (bus.reloj),     
   .RSTa  (bus.reset),     
   .Start (bus.Start),
@@ -13,7 +13,7 @@ Divisor_Algoritmico_duv #(tamanyo) divisor_duv(
 
 endmodule
 
-module Divisor_Algoritmico_duv
+module Divisor_Algoritmico
 #(parameter tamanyo=32)           
 (input CLK,
 input RSTa,

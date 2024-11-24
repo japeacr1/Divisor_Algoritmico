@@ -144,8 +144,6 @@ package utilidades_verificacion;
 		endtask	
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task monitor_output;
-			bit assert_coc_passed;
-			bit assert_res_passed;
 			while (1) begin
 				@(mports.md);
 				if (mports.md.Done) begin
@@ -155,11 +153,8 @@ package utilidades_verificacion;
 					observado_Coc = mports.md.Coc;
 					observado_Res = mports.md.Res;
 
-					assert_coc_passed = (observado_Coc == target_coc);
-					assert_res_passed = (observado_Res == target_res);
-
-					assert (assert_coc_passed) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
-					assert (assert_res_passed) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
+					assert (observado_Coc == target_coc) else $error("Cociente incorrecto: Esperado %d, Observado %d", target_coc, observado_Coc);
+					assert (observado_Res == target_res) else $error("Residuo incorrecto: Esperado %d, Observado %d", target_res, observado_Res);
 				end
 			end
 		endtask	
@@ -172,24 +167,19 @@ package utilidades_verificacion;
 
 		// Covergroup para valores de Num	
 		covergroup valores @(monitorizar_ports.md);
-		num_positivo: coverpoint monitorizar_ports.md.Num {
-			wildcard bins num_pos[100] = {32'b0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx};
-		}
+		num_positivo: coverpoint monitorizar_ports.md.Num {	
+			bins num_pos[100] = {[0 : 2147483647]};}
 		num_negativo: coverpoint monitorizar_ports.md.Num {
-			wildcard bins num_neg[100] = {32'b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx};
-		}
+			bins num_neg[100]  = {[-2147483648 : -1]};}
 		den_positivo: coverpoint monitorizar_ports.md.Den {
-			wildcard bins den_pos[100] = {32'b0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx};
-		}
+			bins den_pos[100]  = {[1 : 2147483647]};}
 		den_negativo: coverpoint monitorizar_ports.md.Den {
-			wildcard bins den_neg[100] = {32'b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx};
-		}
+			bins den_neg[100]  = {[-2147483648 : -1]};}
 
-
-			positivos: cross num_positivo, den_positivo;
-			negativos: cross num_negativo, den_negativo;
-			pos_neg:   cross num_positivo, den_negativo;
-			neg_pos:   cross num_negativo, den_positivo;
+		positivos: cross num_positivo, den_positivo;
+		negativos: cross num_negativo, den_negativo;
+		pos_neg:   cross num_positivo, den_negativo;
+		neg_pos:   cross num_negativo, den_positivo;
 
 		endgroup
 
@@ -233,107 +223,119 @@ package utilidades_verificacion;
 			$display("|                  den_neg              %6.2f%%                                |", valores.den_negativo.get_coverage());
 			$display("+------------------------------------------------------------------------------+");
 			$display("|                  num_pos_den_pos      %6.2f%%                                |", valores.positivos.get_coverage());
-			$display("|                  num_neg_den_pos      %6.2f%%                                |", valores.negativos.get_coverage());
+			$display("|                  num_neg_den_pos      %6.2f%%                                |", valores.neg_pos.get_coverage());
 			$display("|                  num_pos_den_neg      %6.2f%%                                |", valores.pos_neg.get_coverage());
-			$display("|                  num_neg_den_neg      %6.2f%%                                |", valores.neg_pos.get_coverage());
+			$display("|                  num_neg_den_neg      %6.2f%%                                |", valores.negativos.get_coverage());
 			$display("+------------------------------------------------------------------------------+");
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumPos_DenPos;
 			while (valores.positivos.get_coverage() < 20) begin
-			RandInst.num_pos.constraint_mode(1);
-			RandInst.num_neg.constraint_mode(0);
-			RandInst.den_pos.constraint_mode(1);
-			RandInst.den_neg.constraint_mode(0);
+				$display("NumPos_DenPos: Current coverage = %0.2f%%", valores.positivos.get_coverage());
+				RandInst.num_pos.constraint_mode(1);
+				RandInst.num_neg.constraint_mode(0);
+				RandInst.den_pos.constraint_mode(1);
+				RandInst.den_neg.constraint_mode(0);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
+				assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
 
-			testar_ports.sd.Num <= RandInst.num_rand;
-			testar_ports.sd.Den <= RandInst.den_rand;
+				testar_ports.sd.Num <= RandInst.num_rand;
+				testar_ports.sd.Den <= RandInst.den_rand;
 
-			valores.sample(); // Muestreo para la cobertura num    
+				valores.sample(); // Muestreo para la cobertura num    
 
-			@(testar_ports.sd);
-			testar_ports.sd.Start <= 1'b1; // Activa Start 
-			@(testar_ports.sd);
-			#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
+				@(testar_ports.sd);
+				testar_ports.sd.Start <= 1'b1; // Activa Start 
+				@(testar_ports.sd);
+				#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
 
-			@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
+				@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
 			end
-			print_coverage();
+			$display("NumPos_DenPos: Final coverage = %0.2f%%", valores.positivos.get_coverage());
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumNeg_DenPos;
 			while (valores.neg_pos.get_coverage() < 40) begin
-			RandInst.num_pos.constraint_mode(0);
-			RandInst.num_neg.constraint_mode(1);
-			RandInst.den_pos.constraint_mode(1);
-			RandInst.den_neg.constraint_mode(0);
+				$display("NumNeg_DenPos: Current coverage = %0.2f%%", valores.neg_pos.get_coverage());
+				RandInst.num_pos.constraint_mode(0);
+				RandInst.num_neg.constraint_mode(1);
+				RandInst.den_pos.constraint_mode(1);
+				RandInst.den_neg.constraint_mode(0);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
+				assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
 
-			testar_ports.sd.Num <= RandInst.num_rand;
-			testar_ports.sd.Den <= RandInst.den_rand;
+				testar_ports.sd.Num <= RandInst.num_rand;
+				testar_ports.sd.Den <= RandInst.den_rand;
 
-			valores.sample(); // Muestreo para la cobertura num    
+				valores.sample(); // Muestreo para la cobertura num    
 
-			@(testar_ports.sd);
-			testar_ports.sd.Start <= 1'b1; // Activa Start 
-			@(testar_ports.sd);
-			#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
+				@(testar_ports.sd);
+				testar_ports.sd.Start <= 1'b1; // Activa Start 
+				@(testar_ports.sd);
+				#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
 
-			@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
+				@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
 			end
-			print_coverage();
+			$display("NumNeg_DenPos: Final coverage = %0.2f%%", valores.neg_pos.get_coverage());
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumPos_DenNeg;
 			while (valores.pos_neg.get_coverage() < 60) begin
-			RandInst.num_pos.constraint_mode(1);
-			RandInst.num_neg.constraint_mode(0);
-			RandInst.den_pos.constraint_mode(0);
-			RandInst.den_neg.constraint_mode(1);
+				$display("NumPos_DenNeg: Current coverage = %0.2f%%", valores.pos_neg.get_coverage());
+				RandInst.num_pos.constraint_mode(1);
+				RandInst.num_neg.constraint_mode(0);
+				RandInst.den_pos.constraint_mode(0);
+				RandInst.den_neg.constraint_mode(1);
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
+				assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
 
-			testar_ports.sd.Num <= RandInst.num_rand;
-			testar_ports.sd.Den <= RandInst.den_rand;
+				testar_ports.sd.Num <= RandInst.num_rand;
+				testar_ports.sd.Den <= RandInst.den_rand;
 
-			valores.sample(); // Muestreo para la cobertura num    
+				valores.sample(); // Muestreo para la cobertura num    
 
-			@(testar_ports.sd);
-			testar_ports.sd.Start <= 1'b1; // Activa Start 
-			@(testar_ports.sd);
-			#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
+				@(testar_ports.sd);
+				testar_ports.sd.Start <= 1'b1; // Activa Start 
+				@(testar_ports.sd);
+				#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
 
-			@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
+				@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
 			end
-			print_coverage();
+			$display("NumPos_DenNeg: Final coverage = %0.2f%%", valores.pos_neg.get_coverage());
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumNeg_DenNeg;
 			while (valores.negativos.get_coverage() < 80) begin
-			RandInst.num_pos.constraint_mode(0);
-			RandInst.num_neg.constraint_mode(1);
-			RandInst.den_pos.constraint_mode(0);
-			RandInst.den_neg.constraint_mode(1);
+				$display("NumNeg_DenNeg: Current coverage = %0.2f%%", valores.negativos.get_coverage());
 
-			assert (RandInst.randomize()) else $fatal("Error: Fallo en la generaciÃ³n de valores aleatorios");
+				// Configurar restricciones
+				RandInst.num_pos.constraint_mode(0);
+				RandInst.num_neg.constraint_mode(1);
+				RandInst.den_pos.constraint_mode(0);
+				RandInst.den_neg.constraint_mode(1);
 
-			testar_ports.sd.Num <= RandInst.num_rand;
-			testar_ports.sd.Den <= RandInst.den_rand;
+				// Generar valores aleatorios
+				assert (RandInst.randomize()) else $fatal("Error: Fallo en la generación de valores aleatorios");
 
-			valores.sample(); // Muestreo para la cobertura num    
+				// Asignar valores generados a las señales de prueba
+				testar_ports.sd.Num <= RandInst.num_rand;
+				testar_ports.sd.Den <= RandInst.den_rand;
 
-			@(testar_ports.sd);
-			testar_ports.sd.Start <= 1'b1; // Activa Start 
-			@(testar_ports.sd);
-			#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
+				// Muestreo para la cobertura
+				valores.sample();
 
-			@(negedge testar_ports.sd.Done); // Espera a que Done sea 0
+				// Iniciar la prueba
+				@(testar_ports.sd);
+				testar_ports.sd.Start <= 1'b1; // Activa Start 
+				@(testar_ports.sd);
+				#10 testar_ports.sd.Start <= 1'b0; // Baja Start para indicar solo un pulso
+
+				// Esperar a que Done sea 0
+				@(negedge testar_ports.sd.Done);
 			end
-			print_coverage();
+			$display("NumNeg_DenNeg: Final coverage = %0.2f%%", valores.negativos.get_coverage());
 		endtask
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	endclass
 endpackage
 
@@ -349,11 +351,14 @@ program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface
 
 		Test.muestrear;
 		Test.NumPos_DenPos;
-		Test.NumNeg_DenPos;
-		Test.NumPos_DenNeg;
-		Test.NumNeg_DenNeg;
-
 		Test.print_coverage();
+		Test.NumNeg_DenPos;
+		Test.print_coverage();
+		Test.NumPos_DenNeg;
+		Test.print_coverage();
+		Test.NumNeg_DenNeg;
+		Test.print_coverage();
+
 
 		$display("+------------------------------------------------------------------------------+");
 		$display("|                               Pruebas acabadas                               |");

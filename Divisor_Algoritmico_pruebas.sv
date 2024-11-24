@@ -15,9 +15,9 @@
 //
 // Autores: Rafael Gadea
 // --------------------------------------------------------------------
-module Divisor_Algoritmico_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus_ref) ; 
+module Top_pruebas #(parameter tamanyo=32)(Interface_if.Duv_ref bus_ref) ; 
 
-Divisor_Algoritmico_pruebas_duv #(tamanyo) divisor_duv(
+Divisor_Algoritmico_pruebas #(tamanyo) divisor(
   .CLK   (bus_ref.reloj),     
   .RSTa  (bus_ref.reset),     
   .Start (bus_ref.Start),
@@ -30,7 +30,7 @@ Divisor_Algoritmico_pruebas_duv #(tamanyo) divisor_duv(
 
 endmodule
 
-module Divisor_Algoritmico_pruebas_duv
+module Divisor_Algoritmico_pruebas
 #(parameter tamanyo=32)
 (input CLK,
 input RSTa,
