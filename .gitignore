@@ -1,0 +1,28 @@
+# Ignorar archivos de configuración de IDE
+.vscode/
+.idea/
+
+# Ignorar archivos de compilación
+*.log
+*.out
+*.o
+*.d
+
+# Ignorar directorios de compilación
+/build/
+/dist/
+
+# Ignorar archivos temporales
+*.tmp
+*.swp
+
+# Ignorar el directorio work y todo su contenido
+work/
+
+# Ignorar archivos de simulación
+*.vstf
+*.wlf
+*.vcd
+
+# Ignorar archivos transcript
+transcript
