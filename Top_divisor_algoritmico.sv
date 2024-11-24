@@ -213,20 +213,20 @@ package utilidades_verificacion;
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task print_coverage();  //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
-			$display("+------------------------------------------------------------------------------+");
-			$display("|                                Coverage Report                               |");
-			$display("+------------------------------------------------------------------------------+");
-			$display("|                  Valores              %6.2f%%                                |", valores.get_coverage());
-			$display("|                  num_pos              %6.2f%%                                |", valores.num_positivo.get_coverage());
-			$display("|                  den_pos              %6.2f%%                                |", valores.den_positivo.get_coverage());
-			$display("|                  num_neg              %6.2f%%                                |", valores.num_negativo.get_coverage());
-			$display("|                  den_neg              %6.2f%%                                |", valores.den_negativo.get_coverage());
-			$display("+------------------------------------------------------------------------------+");
-			$display("|                  num_pos_den_pos      %6.2f%%                                |", valores.positivos.get_coverage());
-			$display("|                  num_neg_den_pos      %6.2f%%                                |", valores.neg_pos.get_coverage());
-			$display("|                  num_pos_den_neg      %6.2f%%                                |", valores.pos_neg.get_coverage());
-			$display("|                  num_neg_den_neg      %6.2f%%                                |", valores.negativos.get_coverage());
-			$display("+------------------------------------------------------------------------------+");
+			$display("+-----------------------------+");
+			$display("|     Coverage Report         |");
+			$display("+-----------------------------+");
+			$display("| Valores       %6.2f%%       |", valores.get_coverage());
+			$display("| num_pos       %6.2f%%       |", valores.num_positivo.get_coverage());
+			$display("| den_pos       %6.2f%%       |", valores.den_positivo.get_coverage());
+			$display("| num_neg       %6.2f%%       |", valores.num_negativo.get_coverage());
+			$display("| den_neg       %6.2f%%       |", valores.den_negativo.get_coverage());
+			$display("+-----------------------------+");
+			$display("| num_pos_den_pos %6.2f%%     |", valores.positivos.get_coverage());
+			$display("| num_neg_den_pos %6.2f%%     |", valores.neg_pos.get_coverage());
+			$display("| num_pos_den_neg %6.2f%%     |", valores.pos_neg.get_coverage());
+			$display("| num_neg_den_neg %6.2f%%     |", valores.negativos.get_coverage());
+			$display("+-----------------------------+");
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumPos_DenPos;
@@ -341,28 +341,27 @@ endpackage
 
 // Program para los estimulos//////////////////////////////////////////////////////////////////////////////
 program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface_if.monitor monitorizar);
-	utilidades_verificacion::environment Test = new(testar, monitorizar);
+    utilidades_verificacion::environment Test = new(testar, monitorizar);
    
-	initial begin
-		$display("+------------------------------------------------------------------------------+");
-		$display("|                             Iniciando pruebas...                             |");
-		$display("+------------------------------------------------------------------------------+");
-		$display("                                                                                ");
+    initial begin
+        $display("+-----------------------------+");
+        $display("|     Iniciando pruebas...    |");
+        $display("+-----------------------------+");
+        $display("                             ");
 
-		Test.muestrear;
-		Test.NumPos_DenPos;
-		Test.print_coverage();
-		Test.NumNeg_DenPos;
-		Test.print_coverage();
-		Test.NumPos_DenNeg;
-		Test.print_coverage();
-		Test.NumNeg_DenNeg;
-		Test.print_coverage();
+        Test.muestrear;
+        Test.NumPos_DenPos;
+        Test.print_coverage();
+        Test.NumNeg_DenPos;
+        Test.print_coverage();
+        Test.NumPos_DenNeg;
+        Test.print_coverage();
+        Test.NumNeg_DenNeg;
+        Test.print_coverage();
 
-
-		$display("+------------------------------------------------------------------------------+");
-		$display("|                               Pruebas acabadas                               |");
-		$display("+------------------------------------------------------------------------------+");
-		$stop;
-	end
+        $display("+-----------------------------+");
+        $display("|     Pruebas acabadas        |");
+        $display("+-----------------------------+");
+        $stop;
+    end
 endprogram
