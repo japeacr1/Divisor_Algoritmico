@@ -168,13 +168,13 @@ package utilidades_verificacion;
 		// Covergroup para valores de Num	
 		covergroup valores @(monitorizar_ports.md);
 		num_positivo: coverpoint monitorizar_ports.md.Num {	
-			bins num_pos[100] = {[0 : 2147483647]};}
+			bins num_pos[50] = {[0 : 2147483647]};}
 		num_negativo: coverpoint monitorizar_ports.md.Num {
-			bins num_neg[100]  = {[-2147483648 : -1]};}
+			bins num_neg[50]  = {[-2147483648 : -1]};}
 		den_positivo: coverpoint monitorizar_ports.md.Den {
-			bins den_pos[100]  = {[1 : 2147483647]};}
+			bins den_pos[50]  = {[1 : 2147483647]};}
 		den_negativo: coverpoint monitorizar_ports.md.Den {
-			bins den_neg[100]  = {[-2147483648 : -1]};}
+			bins den_neg[50]  = {[-2147483648 : -1]};}
 
 		positivos: cross num_positivo, den_positivo;
 		negativos: cross num_negativo, den_negativo;
@@ -212,7 +212,7 @@ package utilidades_verificacion;
 			join_none
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		task print_coverage();  //esto solo lo uso para verlo en vscode luego antes de entregar lo borrare
+		task print_coverage();  
 			$display("+-----------------------------+");
 			$display("|     Coverage Report         |");
 			$display("+-----------------------------+");
@@ -221,17 +221,19 @@ package utilidades_verificacion;
 			$display("| den_pos       %6.2f%%       |", valores.den_positivo.get_coverage());
 			$display("| num_neg       %6.2f%%       |", valores.num_negativo.get_coverage());
 			$display("| den_neg       %6.2f%%       |", valores.den_negativo.get_coverage());
-			$display("+-----------------------------+");
+			$display("+                             +");
 			$display("| num_pos_den_pos %6.2f%%     |", valores.positivos.get_coverage());
+			$display("| num_neg_den_neg %6.2f%%     |", valores.negativos.get_coverage());
 			$display("| num_neg_den_pos %6.2f%%     |", valores.neg_pos.get_coverage());
 			$display("| num_pos_den_neg %6.2f%%     |", valores.pos_neg.get_coverage());
-			$display("| num_neg_den_neg %6.2f%%     |", valores.negativos.get_coverage());
 			$display("+-----------------------------+");
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumPos_DenPos;
-			while (valores.positivos.get_coverage() < 20) begin
+			while (valores.positivos.get_coverage() < 100) begin
 				$display("NumPos_DenPos: Current coverage = %0.2f%%", valores.positivos.get_coverage());
+				
+				// Configurar restricciones
 				RandInst.num_pos.constraint_mode(1);
 				RandInst.num_neg.constraint_mode(0);
 				RandInst.den_pos.constraint_mode(1);
@@ -255,8 +257,10 @@ package utilidades_verificacion;
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumNeg_DenPos;
-			while (valores.neg_pos.get_coverage() < 40) begin
+			while (valores.neg_pos.get_coverage() < 100) begin
 				$display("NumNeg_DenPos: Current coverage = %0.2f%%", valores.neg_pos.get_coverage());
+				
+				// Configurar restricciones
 				RandInst.num_pos.constraint_mode(0);
 				RandInst.num_neg.constraint_mode(1);
 				RandInst.den_pos.constraint_mode(1);
@@ -280,8 +284,10 @@ package utilidades_verificacion;
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumPos_DenNeg;
-			while (valores.pos_neg.get_coverage() < 60) begin
+			while (valores.pos_neg.get_coverage() < 100) begin
 				$display("NumPos_DenNeg: Current coverage = %0.2f%%", valores.pos_neg.get_coverage());
+				
+				// Configurar restricciones
 				RandInst.num_pos.constraint_mode(1);
 				RandInst.num_neg.constraint_mode(0);
 				RandInst.den_pos.constraint_mode(0);
@@ -305,7 +311,7 @@ package utilidades_verificacion;
 		endtask
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		task NumNeg_DenNeg;
-			while (valores.negativos.get_coverage() < 80) begin
+			while (valores.negativos.get_coverage() < 100) begin
 				$display("NumNeg_DenNeg: Current coverage = %0.2f%%", valores.negativos.get_coverage());
 
 				// Configurar restricciones
@@ -351,13 +357,12 @@ program estimulos #(parameter tamanyo = 32) (Interface_if.test testar, Interface
 
         Test.muestrear;
         Test.NumPos_DenPos;
-        Test.print_coverage();
+		Test.NumNeg_DenNeg;
         Test.NumNeg_DenPos;
-        Test.print_coverage();
         Test.NumPos_DenNeg;
+
         Test.print_coverage();
-        Test.NumNeg_DenNeg;
-        Test.print_coverage();
+
 
         $display("+-----------------------------+");
         $display("|     Pruebas acabadas        |");
