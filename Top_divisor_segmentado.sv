@@ -113,7 +113,7 @@ end
 
 task In(input logic signed [tamanyo-1:0] num, input logic signed [tamanyo-1:0] den);
 	   
-	$display("Testing num: %0d, den: %0d", num, den);
+	$display("input num: %0d, den: %0d", num, den);
 
 	pretarget_Coc = (num / den);
 	pretarget_Res = (num % den);
@@ -149,6 +149,7 @@ task scoreboard();
         
         observado_Coc = test_if.md.Coc;
         observado_Res = test_if.md.Res;
+        $display("output coc: %0d, res: %0d", observado_Coc, observado_Res);
 
         // Aserciones para verificar resultados
         assert (observado_Coc == target_Coc) 
