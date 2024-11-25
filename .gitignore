@@ -23,6 +23,7 @@ work/
 *.vstf
 *.wlf
 *.vcd
+wlft*
 
 # Ignorar archivos transcript
 transcript

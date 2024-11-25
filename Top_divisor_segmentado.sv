@@ -84,7 +84,7 @@ program estimulos #(parameter tamanyo = 32)(Interface_if test_if);
     logic signed [tamanyo-1:0] target_Res_cola[$];
 
 initial  begin
-	$display("Iniciando simulaciÃ¯Â¿Â½n...");
+	$display("Iniciando simulacion...");
 	test_if.Start = 1'b0;
 	repeat (10) begin
 	// Caso 1: Numerador y Denominador positivos
